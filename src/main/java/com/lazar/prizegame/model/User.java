@@ -15,6 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "user")
@@ -35,10 +40,19 @@ public class User implements Serializable {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "code", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Code> codes;
     
-    public User() {
+    public Set<Code> getCodes() {
+		return codes;
+	}
+
+	public void setCodes(Set<Code> codes) {
+		this.codes = codes;
+	}
+
+	public User() {
         super();
     }
 
@@ -71,6 +85,27 @@ public class User implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    
+    public String toString(){
+    	String info = "";
+    	
+        JSONObject jsonInfo = new JSONObject();
+        jsonInfo.put("id",this.getId());
+        
+        jsonInfo.put("name", this.getName());
+        jsonInfo.put("phone", this.getPhone());
+        JSONArray productArray = new JSONArray();
+        if(this.codes != null){
+            this.codes.forEach(code->{
+                //JSONObject subJson = new JSONObject();
+                //subJson.put(new JSONObject(code.toString()));
+                productArray.put(new JSONObject(code.toString()));
+            });
+        }
+        jsonInfo.put("products", productArray);
+        info = jsonInfo.toString();
+        return info;
     }
 
 }
