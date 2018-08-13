@@ -3,13 +3,18 @@ package com.lazar.prizegame.model;
 
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "user")
@@ -30,6 +35,9 @@ public class User implements Serializable {
     @Column(name = "phone")
     private String phone;
 
+    @OneToMany(mappedBy = "code", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Code> codes;
+    
     public User() {
         super();
     }
