@@ -3,6 +3,7 @@ package com.lazar.prizegame.service;
 import java.util.List;
 
 import com.lazar.prizegame.model.Code;
+import com.lazar.prizegame.model.User;
 
 public interface CodeService {
     Iterable<Code> findAll();
@@ -10,7 +11,9 @@ public interface CodeService {
 
     Code findOne(int id);
     
-    Code findByPrizeCode(String prizeCode);
+    Iterable<Code> findByUserId(int userId);
+    
+    Code findByPrizeCode(String prizeCode, int userId);
     
     void save(Code code);
 

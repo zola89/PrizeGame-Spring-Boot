@@ -1,6 +1,6 @@
 package com.lazar.prizegame.service;
-import java.util.List;
 
+import java.util.List;
 import com.lazar.prizegame.model.User;
 
 public interface UserService {
