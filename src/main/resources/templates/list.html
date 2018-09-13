@@ -40,6 +40,7 @@
                     <th>Phone</th>
                     <th>Edit</th>
                     <th>Delete</th>
+                    <th>Code</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,8 @@
                             class="glyphicon glyphicon-pencil"></span></a></td>
                     <td><a th:href="@{/user/{id}/delete(id=${contact.id})}"><span
                             class="glyphicon glyphicon-trash"></span></a></td>
+                   <td><a th:href="@{/code/{id}(id=${contact.id})}"><span
+                            class="glyphicon glyphicon-pencil"></span></a></td>
                 </tr>
                 </tbody>
             </table>

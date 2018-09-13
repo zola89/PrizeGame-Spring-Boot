@@ -86,4 +86,28 @@ public class Code {
 		info = jsonInfo.toString();
 		return info;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPrizeType() {
+		return prizeType;
+	}
+
+	public void setPrizeType(String prizeType) {
+		this.prizeType = prizeType;
+	}
+
+	public Timestamp getPrizeTime() {
+		return prizeTime;
+	}
+
+	public void setPrizeTime(Timestamp prizeTime) {
+		this.prizeTime = prizeTime;
+	}
 }
