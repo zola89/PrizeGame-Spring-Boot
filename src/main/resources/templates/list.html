@@ -38,6 +38,8 @@
                     <th>Id</th>
                     <th>Full Name</th>
                     <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>>
                     <th>Edit</th>
                     <th>Delete</th>
                     <th>Code</th>
@@ -47,6 +49,9 @@
                 <tr th:each="contact,iterStat : ${users}">
                     <td th:text="${iterStat.count}"></td>
                     <td th:text="${contact.name}"></td>
+                                        <td th:text="${contact.email}"></td>
+                                        <td th:text="${contact.address}"></td>
+                    
                     <td th:text="${contact.phone}"></td>
                     <td><a th:href="@{/user/{id}/edit(id=${contact.id})}"><span
                             class="glyphicon glyphicon-pencil"></span></a></td>

@@ -9,15 +9,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lazar.prizegame.model.Code;
 import com.lazar.prizegame.service.CodeService;
+import com.lazar.prizegame.service.UserService;
 
 @Controller
 public class CodeController {
     @Autowired
     private CodeService codeService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/code")
     public String index(Model model) {
@@ -35,6 +40,7 @@ public class CodeController {
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("code", codeService.findOne(id));
         return "code_form";
+        
     }
 
     @PostMapping("/code/save")
@@ -51,19 +57,21 @@ public class CodeController {
     public String delete(@PathVariable int id, RedirectAttributes redirect) {
         codeService.delete(id);
         redirect.addFlashAttribute("success", "Deleted code successfully!");
-        return "redirect:/code";
+        return "code_list";
     }
     
     @GetMapping("/code/{user_id}")
     public String getCodeByUserId(@PathVariable int user_id, Model model) {
     	model.addAttribute("codes", codeService.findByUserId(user_id));
+    	model.addAttribute("user", userService.findOne(user_id));
         return "code_list";
     }
     
-    @GetMapping("/code/{user_id}/{prize_code}")
-    public String getCodeByPrizeCode(@PathVariable int user_id, @PathVariable String prizeCode, Model model) {
-    	model.addAttribute("code", codeService.findByPrizeCode(prizeCode, user_id));
-        return "redirect:/code";
+    @GetMapping(value= "/code/{id}/add")
+    public String getCodeByPrizeCode(@PathVariable("id") int id, @RequestParam("code") String code, Model model) {
+    	model.addAttribute("code", codeService.findByPrizeCode(code, id));
+    	model.addAttribute("user", userService.findOne(id));
+        return "code_list";
     }
 
 }

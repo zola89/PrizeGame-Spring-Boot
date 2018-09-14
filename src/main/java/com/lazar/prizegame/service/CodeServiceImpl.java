@@ -1,5 +1,6 @@
 package com.lazar.prizegame.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,11 @@ public class CodeServiceImpl implements CodeService {
 	public Code findByPrizeCode(String prizeCode, int userId){
 		Code code = codeRepository.findByPrizeCode(prizeCode);
 		User currentUser = userService.findOne(userId);
-		code.setUser(currentUser);
+		if(code != null) {
+			code.setUser(currentUser);
+			code.setPrizeTime(new Timestamp(System.currentTimeMillis()));
+			save(code);
+		}
 		return code;
 	}
 }

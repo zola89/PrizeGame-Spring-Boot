@@ -18,14 +18,12 @@
             <span class="glyphicon glyphicon-plus"></span> Add new code
         </a>
         <form class="form-inline pull-right" action="#"
-              th:action="@{/code/{user_id}/{prize_code}}" method="GET">
+              th:action="@{/code/{id}/add/(id=${user.id})}" method="GET">
             <div class="form-group">
-            <input type="number" step="1" class="form-control" name="user_id"
-                       placeholder="Enter user id: " />
-                <input type="text" class="form-control" name="prize_code"
+                <input type="text" class="form-control" name="code"
                        placeholder="Enter prize code: " />
             </div>
-            <button type="submit" class="btn btn-warning pull-left"> <span class="glyphicon glyphicon-plus"></span> Add new code</button>
+            <button type="submit" class="btn btn-warning pull-left">Add new prize code</button>
         </form>
     </div>
     <th:block th:if="${#lists.isEmpty(codes)}">

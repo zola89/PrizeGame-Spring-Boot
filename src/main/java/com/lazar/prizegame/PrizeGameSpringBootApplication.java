@@ -32,9 +32,9 @@ public class PrizeGameSpringBootApplication implements CommandLineRunner{
 	
 	@Override
     public void run(String... arg0) throws Exception {
-    	clearData();
-    	saveData();
-    	showData();
+    	//clearData();
+    	//saveData();
+    	//showData();
     }
     
     @Transactional
@@ -50,8 +50,8 @@ public class PrizeGameSpringBootApplication implements CommandLineRunner{
     }
     
     private void saveDataWithApproach1(){
-        User user1 = new User(13,"Lazar","012312412");
-        User user2= new User(14,"Nada","0123dsf412");
+        User user1 = new User(13,"Lazar", "12345", "012312412", "zola89@gmail.com", "27Marta 28");
+        User user2= new User(14,"Nada","12345", "0123233412", "nbogdano@calliduscloud.com", "27 Marta 28");
         
         Code code1 = new Code("12345462", "zamena", user1);
         Code code2 = new Code("12345466", "letovanje", user1,new Timestamp(System.currentTimeMillis()));
@@ -60,7 +60,8 @@ public class PrizeGameSpringBootApplication implements CommandLineRunner{
         Code code3 = new Code("12345423", "zamena", user2);
         Code code4 = new Code("12345432", "automobil", user2);
         
-        
+        //Code code5 = new Code("12345678", "automobil", user2);
+        //codeRepository.save(code5);
         user1.setCodes(new HashSet<Code>(){{
             add(code1);
             add(code2);

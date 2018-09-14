@@ -34,12 +34,45 @@ public class User implements Serializable {
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+    
+    @Column(name ="password", nullable= false)
+    private String password;
 
     @Column(name = "phone")
     private String phone;
+    
+    @Column(name = "email", nullable= false, unique = true)
+    private String email;
+    
+    public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Column(name ="address")
+    private String address;
+    
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Code> codes;
@@ -56,11 +89,14 @@ public class User implements Serializable {
         super();
     }
 
-    public User(int id, String name, String phone) {
+    public User(int id, String name, String password,String phone, String email, String address) {
         super();
         this.id = id;
         this.name = name;
         this.phone = phone;
+        this.password = password;
+        this.email= email;
+        this.address = address;
     }
 
     public int getId() {
@@ -95,6 +131,8 @@ public class User implements Serializable {
         
         jsonInfo.put("name", this.getName());
         jsonInfo.put("phone", this.getPhone());
+        jsonInfo.put("email", this.getEmail());
+        jsonInfo.put("address", this.getAddress());
         JSONArray productArray = new JSONArray();
         if(this.codes != null){
             this.codes.forEach(code->{
