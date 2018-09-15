@@ -13,7 +13,7 @@
         </button>
         <span th:text="${success}"></span>
     </div>
-    <div class="row">
+    <div class="row" th:if="${user != 'null'}">
         <a th:href="@{/code/create}" class="btn btn-warning pull-left">
             <span class="glyphicon glyphicon-plus"></span> Add new code
         </a>

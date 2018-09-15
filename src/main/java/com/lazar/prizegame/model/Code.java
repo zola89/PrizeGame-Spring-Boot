@@ -25,7 +25,7 @@ public class Code {
 	@Column(name = "prize_code", nullable = false, unique = true)
 	private String prizeCode;
 
-	@Column(name = "prize_type", nullable = false, unique = true)
+	@Column(name = "prize_type", nullable = false)
 	private String prizeType;
 
 	@Column(name = "prize_time")
