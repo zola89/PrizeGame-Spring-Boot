@@ -72,7 +72,7 @@ public class PrizeGameSpringBootApplication implements CommandLineRunner{
             add(code4);
         }});
         
-        // save companies
+        // save users
         userRepository.save(user1);
         userRepository.save(user2);
     }

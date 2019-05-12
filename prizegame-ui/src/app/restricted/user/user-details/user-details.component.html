@@ -1,0 +1,74 @@
+<div class="mat-elevation-z8 uvs-inner-padding">
+
+  <h3 *ngIf="id" mat-dialog-title>Update User</h3>
+  <h3 *ngIf="!id" mat-dialog-title>New User</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="primary">
+        <mat-label>Username</mat-label>
+        <input matInput #input class="form-control" [(ngModel)]="user.username" name="username" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="primary">
+        <mat-label>Email</mat-label>
+        <input matInput #input class="form-control" [(ngModel)]="user.email" name="mail" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="id > 0; then hidePass else showPass"></div>
+
+    <ng-template #hidePass>
+
+      <mat-checkbox name="resetPass" (change)="changeState()" color="primary">Reset Password</mat-checkbox>
+
+      <div *ngIf=check>
+        <div class="form">
+          <mat-form-field color="primary">
+            <mat-label>Password</mat-label>
+            <input matInput #input class="form-control" type="password" [(ngModel)]="user.password" name="password" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form">
+          <mat-form-field color="primary">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput #input class="form-control" type="password" [(ngModel)]="user.confirmPassword" name="confirmPassword" required appConfirmEqualValidator="password">
+            <mat-error *ngIf="formControl.invalid">{{getNotEqualPasswordMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <ng-template #showPass>
+      <div class="form">
+        <mat-form-field color="primary">
+          <mat-label>Password</mat-label>
+          <input matInput #input class="form-control" type="password" [(ngModel)]="user.password" name="password" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="primary">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput #input class="form-control" type="password" [(ngModel)]="user.confirmPassword" name="confirmPassword" required appConfirmEqualValidator="password">
+          <mat-error *ngIf="formControl.invalid">{{getNotEqualPasswordMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </ng-template>
+
+    <div mat-dialog-actions style="margin-top: 20px">
+      <button mat-raised-button color="primary" [disabled]="!formControl.valid" (click)="submit()">Save</button>
+      <button mat-button (click)="onCancel()" tabindex="-1">Cancel</button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,49 @@
+<div class="mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> UserName</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['username', 'actions']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['username', 'actions'];" (click)="edit(row.id)"></mat-row>
+
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Add New" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Edit" (click)="edit(row.id)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Delete" (click)="$event.stopPropagation();openConfirmationDialog(i, row.id)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+
+    </ng-container>
+
+  </mat-table>
+
+  <div *ngIf="dataSource.data.length === 0; then empty"></div>
+  <ng-template #empty>
+    <mat-card>
+      <mat-label class="emptyTableLabel">
+        No Data to Display.
+      </mat-label>
+    </mat-card>
+  </ng-template>
+
+  <div [class]="dataSource.data.length > 10 ? '' : 'hidden'">
+    <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" [pageSize]="screenHeight <= 800 ? 10 : 20" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+
+</div>

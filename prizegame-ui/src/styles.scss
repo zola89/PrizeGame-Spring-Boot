@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+main {
+  margin-top: 10px;
+  max-height: 50vh;
+}
+
+.uvs-spacer {
+  flex: 1 1 auto;
+}
+
+.uvs-inner-padding {
+  padding: 20px 40px;
+}
+
+.mat-dialog-subtitle {
+  width: 66% !important;
+  font-size: 16px !important;
+}
+
+.emptyTableLabel {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+.mat-row:hover {
+  cursor: pointer;
+}
+
+.mat-form-field-infix {
+  width: none !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.md-36 {
+  font-size: 32px !important;
+}
+
+.md-50 {
+  font-size: 50px !important;
+}
+
+.uvs-success {
+  color: #11c420;
+}
+
+.uvs-failed {
+  color: #ff0000;
+}
+
+.uvs-canceled {
+  color: rgba(0, 0, 0, .45);
+}
+
+.uvs-timedout {
+  color: #ff8c00;
+}
+
+.fs-16 {
+  font-size: 16px
+}
+
+.uvs_grid_wrapper {
+  width: auto;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+.uvs-info-note {
+  background-color: rgba(108, 166, 227, .12);
+  padding: 10px
+}
+
+/* Snack Bar Styles */
+
+.snack-error-message {
+  min-width: 10px !important;
+  background: #ff0000 !important;
+  color: #fff;
+}
+
+.snack-success-message {
+  min-width: 10px !important;
+  background: #11c420;
+  color: #fff;
+}
+
+.snack-warning-message {
+  min-width: 10px !important;
+  background: #faffbd;
+  color: #000000;
+}
+
+/* End of Snack Bar Styles */
+
+.CodeMirror-merge {
+  height: 100% !important;
+}
+
+.CodeMirror-wrap {
+  height: 100% !important;
+}
+
+.CodeMirror-merge-pane {
+  height: 100% !important;
+}

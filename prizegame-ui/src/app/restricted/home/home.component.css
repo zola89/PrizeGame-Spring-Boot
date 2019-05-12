@@ -1,0 +1,84 @@
+.mat-card {
+  padding: 1.5% !important;
+}
+
+.mat-row {
+  align-items: stretch;
+}
+
+.mat-cell {
+  display: block;
+}
+
+.chart {
+  display: -webkit-inline-box;
+  width: 60% !important;
+  padding-top: 7%;
+}
+
+.mat-column-status {
+  flex: 0 0 50px;
+}
+
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.left-card {
+  float:left;
+  width:49.7%;
+  height: 49%;
+  text-align:center;
+}
+
+.right-card {
+  float:right;
+  width:49.7%;
+  height: 49%;
+  text-align:center;
+}
+
+@media only screen and (max-width:1150px) {
+  /* For smaller screens: */
+  .left-card, .right-card {
+    width:100%;
+    height: 50%;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #888;
+}
+
+.custom-scrollbar {
+  overflow: hidden;
+}
+
+.custom-scrollbar:hover {
+  overflow: overlay;
+}
+
+.mat-cell-div {
+  height: 100%;
+  width: 100%;
+  padding-top: 16px;
+}
+
+.mat-cell-icon {
+  padding-top: 12px;
+}
+
+.disabled:hover {
+  cursor: no-drop;
+}
