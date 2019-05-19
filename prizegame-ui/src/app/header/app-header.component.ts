@@ -39,8 +39,8 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
     this.router.navigateByUrl('/');
   }
 
-  prizes() {
-    this.router.navigateByUrl('prize');
+  codes() {
+    this.router.navigateByUrl('code');
   }
   
   users() {

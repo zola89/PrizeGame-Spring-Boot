@@ -84,7 +84,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   navigateBack() {
-      this.router.navigateByUrl('home');
+      this.router.navigateByUrl('user');
   }
 
 }

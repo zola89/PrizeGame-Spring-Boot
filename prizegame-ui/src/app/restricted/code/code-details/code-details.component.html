@@ -1,0 +1,32 @@
+<div class="mat-elevation-z8 uvs-inner-padding">
+
+  <h3 *ngIf="id" mat-dialog-title>Update Code</h3>
+  <h3 *ngIf="!id" mat-dialog-title>New Code</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="primary">
+        <mat-label>Prize Code</mat-label>
+        <input matInput #prizeCode class="form-control" [(ngModel)]="code.prizeCode" name="prizeCode" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="primary">
+        <mat-label>Prize Type</mat-label>
+        <input matInput #prizeType class="form-control" [(ngModel)]="code.prizeType" name="prizeType" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions style="margin-top: 20px">
+      <button mat-raised-button color="primary" [disabled]="!formControl.valid" (click)="submit()">Save</button>
+      <button mat-button (click)="onCancel()" tabindex="-1">Cancel</button>
+    </div>
+
+  </form>
+
+</div>
+

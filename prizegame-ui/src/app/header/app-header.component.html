@@ -3,16 +3,17 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
 
-      <span title="Home page"><img src="assets/logo.png" height="65px" (click)="openHomePage()" style="cursor: pointer; padding-top: 9px"></span>
+      <span title="Home page"><img src="assets/logo.png" (click)="openHomePage()" style="cursor: pointer; padding-top: 9px"></span>
 
-      <button mat-button (click)="prizes()">Prizes</button>
+      <button mat-button (click)="codes()">Codes</button>
+      <button mat-button (click)="users()">Users</button>
 
       <span class="uvs-fill-remaining-space"></span>
       <span class="uvs-spacer"></span>
 
         <span style="font-size: 14px">Logged in as {{currentUser.username}}</span>
         <button mat-button (click)="editProfile()" title="Profile" class="mat-icon-button">
-          <mat-icon aria-label="Edit">face</mat-icon>
+          <mat-icon aria-label="Edit" svgIcon="face"></mat-icon>
         </button>
         <button mat-button (click)="quickGuide()" title="Help" class="mat-icon-button">
           <mat-icon aria-label="Logout">help_outline</mat-icon>

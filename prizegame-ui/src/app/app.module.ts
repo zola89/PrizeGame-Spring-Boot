@@ -31,17 +31,17 @@ import {AppHeaderComponent} from "./header/app-header.component";
 import {AutocompleteComponent} from "./core/shared-components/autocomplete/autocomplete.component";
 import {AppHeaderMessengerService} from "./header/app-header-messager.service";
 import {QuickGuideComponent} from "./restricted/quick-guide/quick-guide.component";
-import {PrizeDetailsComponent} from "./restricted/prize/prize-details/prize-details.component";
-import {PrizeComponent} from "./restricted/prize/prize.component";
-import {PrizeService} from "./restricted/prize/prize.service";
+import {CodeDetailsComponent} from "./restricted/code/code-details/code-details.component";
+import {CodeComponent} from "./restricted/code/code.component";
+import {CodeService} from "./restricted/code/code.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     UserDetailsComponent,
-    PrizeComponent,
-    PrizeDetailsComponent,
+    CodeComponent,
+    CodeDetailsComponent,
     AppHeaderComponent,
     LoginComponent,
     ErrorDialogComponent,
@@ -64,7 +64,7 @@ import {PrizeService} from "./restricted/prize/prize.service";
     Ng4LoadingSpinnerModule.forRoot()
   ],
   entryComponents: [ErrorDialogComponent, ConfirmationDialogComponent, SpinnerComponent, AutocompleteComponent, UnauthorizedComponent],
-  providers: [ErrorDialogComponent, UserService, PrizeService, AuthService, TokenStorage, TokenStorage, AuthGuardService, AdminGuardService, AnalystGuardService, AppHeaderMessengerService, AlertService, SnackBarService,
+  providers: [ErrorDialogComponent, UserService, CodeService, AuthService, TokenStorage, TokenStorage, AuthGuardService, AdminGuardService, AnalystGuardService, AppHeaderMessengerService, AlertService, SnackBarService,
 
     {
       provide: HTTP_INTERCEPTORS,

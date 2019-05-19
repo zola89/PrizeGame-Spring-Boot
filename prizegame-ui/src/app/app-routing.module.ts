@@ -4,11 +4,11 @@ import {UserComponent} from "./restricted/user/user.component";
 import {AuthGuardService} from "./core/auth/auth-guard.service";
 import {UserDetailsComponent} from "./restricted/user/user-details/user-details.component";
 import {HomeComponent} from "./restricted/home/home.component";
-import {PrizeComponent} from "./restricted/prize/prize.component";
+import {CodeComponent} from "./restricted/code/code.component";
 import {AnalystGuardService} from "./core/auth/analyst-guard.service";
 import {LoginComponent} from "./public/login/login.component";
 import {UnauthorizedComponent} from "./public/unauthorized/unauthorized.component";
-import {PrizeDetailsComponent} from "./restricted/prize/prize-details/prize-details.component";
+import {CodeDetailsComponent} from "./restricted/code/code-details/code-details.component";
 import {QuickGuideComponent} from "./restricted/quick-guide/quick-guide.component";
 
 const routes: Routes = [
@@ -17,9 +17,9 @@ const routes: Routes = [
   {path: 'user/details', component: UserDetailsComponent, canActivate: [AuthGuardService]},
   {path: 'user/details/:id', component: UserDetailsComponent, canActivate: [AuthGuardService]},
 
-  {path: 'prize', component: PrizeComponent, canActivate: [AuthGuardService]},
-  {path: 'prize/details', component: PrizeDetailsComponent, canActivate: [AuthGuardService, AnalystGuardService]},
-  {path: 'prize/details/:id', component: PrizeDetailsComponent, canActivate: [AuthGuardService, AnalystGuardService]},
+  {path: 'code', component: CodeComponent, canActivate: [AuthGuardService]},
+  {path: 'code/details', component: CodeDetailsComponent, canActivate: [AuthGuardService, AnalystGuardService]},
+  {path: 'code/details/:id', component: CodeDetailsComponent, canActivate: [AuthGuardService, AnalystGuardService]},
   
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   
