@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.json.JSONObject;
+
+import com.lazar.prizegame.model.enums.PrizeType;
 
 @Entity
 @Table(name = "code")
@@ -25,8 +29,9 @@ public class Code {
 	@Column(name = "prize_code", nullable = false, unique = true)
 	private String prizeCode;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "prize_type", nullable = false)
-	private String prizeType;
+	private PrizeType prizeType;
 
 	@Column(name = "prize_time")
 	private Timestamp prizeTime;
@@ -40,13 +45,13 @@ public class Code {
 
 	public Code(String prizeCode, String prizeType, User user) {
 		this.prizeCode = prizeCode;
-		this.prizeType = prizeType;
+		this.prizeType = PrizeType.getByValue(prizeType);
 		this.user = user;
 	}
 
 	public Code(String prizeCode, String prizeType, User user, Timestamp prizeTime) {
 		this.prizeCode = prizeCode;
-		this.prizeType = prizeType;
+		this.prizeType = PrizeType.getByValue(prizeType);
 		this.user = user;
 		this.prizeTime = prizeTime;
 	}
@@ -73,7 +78,9 @@ public class Code {
 
 		JSONObject jsonInfo = new JSONObject();
 		jsonInfo.put("prizeCode", this.prizeCode);
-		jsonInfo.put("prizeType", this.prizeType);
+		if(this.prizeType != null) {
+			jsonInfo.put("prizeType", this.prizeType.getValue());
+		}
 
 		if (this.prizeTime != null) {
 			jsonInfo.put("prizeTime", this.prizeTime);
@@ -95,11 +102,11 @@ public class Code {
 		this.id = id;
 	}
 
-	public String getPrizeType() {
+	public PrizeType getPrizeType() {
 		return prizeType;
 	}
 
-	public void setPrizeType(String prizeType) {
+	public void setPrizeType(PrizeType prizeType) {
 		this.prizeType = prizeType;
 	}
 

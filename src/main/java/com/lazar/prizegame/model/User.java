@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lazar.prizegame.model.enums.UserRole;
 
 
 @Entity
@@ -46,7 +49,19 @@ public class User implements Serializable {
     @Column(name = "email", nullable= false, unique = true)
     private String email;
     
-    public String getPassword() {
+    @Enumerated(EnumType.STRING)
+    @Column(name ="user_role")
+    private UserRole userRole;
+    
+    public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+
+	public String getPassword() {
 		return password;
 	}
 
@@ -89,7 +104,7 @@ public class User implements Serializable {
         super();
     }
 
-    public User(int id, String name, String password,String phone, String email, String address) {
+    public User(int id, String name, String password,String phone, String email, String address, String userRole) {
         super();
         this.id = id;
         this.name = name;
@@ -97,6 +112,7 @@ public class User implements Serializable {
         this.password = password;
         this.email= email;
         this.address = address;
+        this.userRole = UserRole.valueOf(userRole);
     }
 
     public int getId() {
@@ -133,6 +149,8 @@ public class User implements Serializable {
         jsonInfo.put("phone", this.getPhone());
         jsonInfo.put("email", this.getEmail());
         jsonInfo.put("address", this.getAddress());
+        jsonInfo.put("userRole", this.getUserRole().getValue());
+
         JSONArray productArray = new JSONArray();
         if(this.codes != null){
             this.codes.forEach(code->{

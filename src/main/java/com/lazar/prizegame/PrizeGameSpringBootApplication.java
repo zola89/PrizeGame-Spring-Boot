@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lazar.prizegame.model.Code;
 import com.lazar.prizegame.model.User;
+import com.lazar.prizegame.model.enums.PrizeType;
+import com.lazar.prizegame.model.enums.UserRole;
 import com.lazar.prizegame.repository.CodeRepository;
 import com.lazar.prizegame.repository.UserRepository;
 
@@ -50,15 +52,15 @@ public class PrizeGameSpringBootApplication implements CommandLineRunner{
     }
     
     private void saveDataWithApproach1(){
-        User user1 = new User(13,"Lazar", "12345", "012312412", "zola89@gmail.com", "27Marta 28");
-        User user2= new User(14,"Nada","12345", "0123233412", "nbogdano@calliduscloud.com", "27 Marta 28");
+        User user1 = new User(13,"Lazar", "12345", "012312412", "zola89@gmail.com", "27Marta 28", UserRole.ADMIN.getValue());
+        User user2= new User(14,"Nada","12345", "0123233412", "nbogdano@calliduscloud.com", "27 Marta 28", UserRole.ADMIN.getValue());
         
-        Code code1 = new Code("12345462", "zamena", user1);
-        Code code2 = new Code("12345466", "letovanje", user1,new Timestamp(System.currentTimeMillis()));
+        Code code1 = new Code("12345462", PrizeType.CASH.getValue(), user1);
+        Code code2 = new Code("12345466", PrizeType.CASH.getValue(), user1,new Timestamp(System.currentTimeMillis()));
         
 
-        Code code3 = new Code("12345423", "zamena", user2);
-        Code code4 = new Code("12345432", "automobil", user2);
+        Code code3 = new Code("12345423", PrizeType.CASH.getValue(), user2);
+        Code code4 = new Code("12345432", PrizeType.CASH.getValue(), user2);
         
         //Code code5 = new Code("12345678", "automobil", user2);
         //codeRepository.save(code5);
