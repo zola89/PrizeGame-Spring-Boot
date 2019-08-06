@@ -20,7 +20,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
 
   constructor(private router: Router, public token: TokenStorage, private appHeaderMessengerService: AppHeaderMessengerService, public dialog: MatDialog) {
     super(token);
-    this.refreshCurrentUser()
+    this.refreshCurrentUser();
   }
 
   ngOnInit() {
@@ -46,7 +46,6 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
   users() {
     this.router.navigateByUrl('user');
   }
-  
 
   editProfile() {
     this.router.navigateByUrl('user/details/' + this.token.getUserId());
@@ -60,7 +59,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
     this.router.navigateByUrl('quick_guide');
   }
 
-  openConfirmationDialog(index: number, id: any) {
+  openConfirmationDialog() {
     this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       disableClose: false
     });

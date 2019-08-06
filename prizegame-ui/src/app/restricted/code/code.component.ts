@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef, MatPaginator, MatTableDataSource} from "@angular/material";
+import {MatDialog, MatDialogRef, MatPaginator, MatTable, MatTableDataSource} from "@angular/material";
 import {ConfirmationDialogComponent} from "../dialog/confirmation-dialog.component";
 import {Router} from "@angular/router";
 import {Code} from "./code.model";
@@ -15,6 +15,9 @@ export class CodeComponent implements OnInit {
   dataSource = new MatTableDataSource<Code>();
   dialogRef: MatDialogRef<ConfirmationDialogComponent>;
   screenHeight: number;
+
+  @ViewChild('codeTable')
+  codeTable: MatTable<Code>;
 
   @HostListener('window:resize', ['$event'])
   onResize() {

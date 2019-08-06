@@ -1,77 +1,76 @@
 package com.lazar.prizegame.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.lazar.prizegame.dto.CodeDTO;
 import com.lazar.prizegame.model.Code;
 import com.lazar.prizegame.service.CodeService;
 import com.lazar.prizegame.service.UserService;
+import com.lazar.prizegame.utils.headers.Headers;
+import com.lazar.prizegame.utils.headers.HeadersHelper;
+import com.lazar.prizegame.utils.messages.Messages;
+import com.lazar.prizegame.utils.messages.MessagesHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/code")
 public class CodeController {
+
     @Autowired
     private CodeService codeService;
     
     @Autowired
     private UserService userService;
 
-    @GetMapping("/code")
-    public String index(Model model) {
-        model.addAttribute("codes", codeService.findAll());
-        return "code_list";
+    @GetMapping()
+    public List<Code> getAll() {
+        return codeService.findAll();
     }
 
-    @GetMapping("/code/create")
-    public String create(Model model) {
-        model.addAttribute("code", new Code());
-        return "code_form";
+    @PostMapping
+    public ResponseEntity save(@RequestBody CodeDTO  codeDTO) {
+
+        Code code = codeService.saveDTO(codeDTO);
+
+        HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, MessagesHelper.generate(Messages.CREATE_SUCCESS, Code.class.getSimpleName(), code.getPrizeCode()));
+
+        return new ResponseEntity<>(null, headers, HttpStatus.CREATED);
     }
 
-    @GetMapping("/code/{id}/edit")
-    public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("code", codeService.findOne(id));
-        return "code_form";
-        
+    @GetMapping(value = "/{id}")
+    public Code getById(@PathVariable(value = "id") int id) {
+
+        return codeService.findOne(id);
     }
 
-    @PostMapping("/code/save")
-    public String save(@Valid Code code, BindingResult result, RedirectAttributes redirect) {
-        if (result.hasErrors()) {
-            return "code_form";
-        }
-        codeService.save(code);
-        redirect.addFlashAttribute("success", "Saved code successfully!");
-        return "redirect:/code";
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteById(@PathVariable(value = "id") int id) {
+
+        userService.delete(id);
+
+        HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, MessagesHelper.generate(Messages.DELETE_SUCCESS, Code.class.getSimpleName()));
+
+        return new ResponseEntity<>(null, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/code/{id}/delete")
-    public String delete(@PathVariable int id, RedirectAttributes redirect) {
-        codeService.delete(id);
-        redirect.addFlashAttribute("success", "Deleted code successfully!");
-        return "code_list";
+    @PutMapping(value = "/{id}")
+    public ResponseEntity updateById(@PathVariable(value = "id") Long id, @RequestBody CodeDTO codeDTO) {
+
+        Code code = codeService.updateDTO(codeDTO);
+
+        HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, MessagesHelper.generate(Messages.UPDATE_SUCCESS, Code.class.getSimpleName(), code.getPrizeCode()));
+
+        return new ResponseEntity<>(null, headers, HttpStatus.OK);
     }
+
     
-    @GetMapping("/code/{user_id}")
-    public String getCodeByUserId(@PathVariable int user_id, Model model) {
-    	model.addAttribute("codes", codeService.findByUserId(user_id));
-    	model.addAttribute("user", userService.findOne(user_id));
-        return "code_list";
-    }
-    
-    @GetMapping(value= "/code/{id}/add")
-    public String getCodeByPrizeCode(@PathVariable("id") int id, @RequestParam("code") String code, Model model) {
-    	model.addAttribute("code", codeService.findByPrizeCode(code, id));
-    	model.addAttribute("user", userService.findOne(id));
-        return "code_list";
+    @GetMapping("/user/{user_id}")
+    public List<Code> getCodeByUserId(@PathVariable int user_id) {
+        return codeService.findByUserId(user_id);
     }
 
 }

@@ -1,21 +1,31 @@
 package com.lazar.prizegame.service;
 
+import com.lazar.prizegame.dto.CodeDTO;
+import com.lazar.prizegame.model.Code;
+
 import java.util.List;
 
-import com.lazar.prizegame.model.Code;
-import com.lazar.prizegame.model.User;
-
 public interface CodeService {
-    Iterable<Code> findAll();
 
+    List<Code> findAll();
 
     Code findOne(int id);
     
-    Iterable<Code> findByUserId(int userId);
-    
-    Code findByPrizeCode(String prizeCode, int userId);
-    
+    List<Code> findByUserId(int userId);
+
     void save(Code code);
 
     void delete(int id);
+
+    Code saveDTO(CodeDTO dto);
+
+    Code update(Code code);
+
+    CodeDTO mapDTOFromEntity(Code code, CodeDTO codeDTO);
+
+    Code mapEntityFromDTO(CodeDTO dto, Code code);
+
+    CodeDTO findDtoById(int id);
+
+    Code updateDTO(CodeDTO dto);
 }

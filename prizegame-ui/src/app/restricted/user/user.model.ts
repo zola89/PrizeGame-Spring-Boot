@@ -1,11 +1,13 @@
 export class User {
 
-  id: number;
-  username: string;
-  email: string;
-  role: string;
-  password: string;
-  confirmPassword: string;
+  id?: number;
+  name?: string;
+  password?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  userRole?: string;
+  confirmPassword?: string;
 
   public isAdmin(): boolean {
     let allowedRoles = ['ADMIN'];
@@ -19,15 +21,11 @@ export class User {
 
   public checkRole(allowedRoles: string[]): boolean {
 
-    if (allowedRoles.includes(this.role)) {
+    if (allowedRoles.includes(this.userRole)) {
       return true;
     }
 
     return false;
   }
-
-
-
-
 
 }

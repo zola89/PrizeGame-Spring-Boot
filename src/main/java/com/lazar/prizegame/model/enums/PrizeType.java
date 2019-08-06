@@ -1,5 +1,12 @@
 package com.lazar.prizegame.model.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum PrizeType {
 	
 	CASH("Cash"),
@@ -9,18 +16,6 @@ public enum PrizeType {
 	SHIRT("T-shirt");
 	
 	private String value;
-
-	private PrizeType(String value) {
-		this.value = value;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 	
 	public static PrizeType getByValue(String s) {
 
@@ -34,6 +29,5 @@ public enum PrizeType {
 
 			return null;
 		}
-	
-	
+
 }

@@ -1,67 +1,71 @@
 package com.lazar.prizegame.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.lazar.prizegame.dto.UserDTO;
+import com.lazar.prizegame.dto.enums.UserRoleDTO;
 import com.lazar.prizegame.model.User;
 import com.lazar.prizegame.service.UserService;
+import com.lazar.prizegame.utils.headers.Headers;
+import com.lazar.prizegame.utils.headers.HeadersHelper;
+import com.lazar.prizegame.utils.messages.Messages;
+import com.lazar.prizegame.utils.messages.MessagesHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user")
-    public String index(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "list";
+    @GetMapping
+    public List<User> getAll() {
+        return userService.findAll();
     }
 
-    @GetMapping("/user/create")
-    public String create(Model model) {
-        model.addAttribute("user", new User());
-        return "form";
+    @PostMapping
+    public ResponseEntity save(@RequestBody UserDTO userDTO) {
+
+        User user = userService.saveDTO(userDTO);
+
+        HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, MessagesHelper.generate(Messages.CREATE_SUCCESS, User.class.getSimpleName(), user.getName()));
+
+        return new ResponseEntity<>(null, headers, HttpStatus.CREATED);
     }
 
-    @GetMapping("/user/{id}/edit")
-    public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("user", userService.findOne(id));
-        return "form";
+    @GetMapping(value = "/{id}")
+    public User getById(@PathVariable(value = "id") int id) {
+        return userService.findOne(id);
     }
 
-    @PostMapping("/user/save")
-    public String save(@Valid User user, BindingResult result, RedirectAttributes redirect) {
-        if (result.hasErrors()) {
-            return "form";
-        }
-        userService.save(user);
-        redirect.addFlashAttribute("success", "Saved user successfully!");
-        return "redirect:/user";
-    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteById(@PathVariable(value = "id") int id) {
 
-    @GetMapping("/user/{id}/delete")
-    public String delete(@PathVariable int id, RedirectAttributes redirect) {
         userService.delete(id);
-        redirect.addFlashAttribute("success", "Deleted user successfully!");
-        return "redirect:/user";
+
+        HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, MessagesHelper.generate(Messages.DELETE_SUCCESS, User.class.getSimpleName()));
+
+        return new ResponseEntity<>(null, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/user/search")
-    public String search(@RequestParam("s") String s, Model model) {
-        if (s.equals("")) {
-            return "redirect:/user";
-        }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity updateById(@PathVariable(value = "id") Long id, @RequestBody UserDTO userDTO) {
 
-        model.addAttribute("users", userService.search(s));
-        return "list";
+        User user = userService.updateDTO(userDTO);
+
+        HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, MessagesHelper.generate(Messages.UPDATE_SUCCESS, User.class.getSimpleName(), user.getName()));
+
+        return new ResponseEntity<>(null, headers, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/user_roles")
+    public List<UserRoleDTO> getUserRoles() {
+        return userService.findUserRoles();
+    }
+
 }

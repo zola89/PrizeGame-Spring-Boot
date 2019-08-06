@@ -45,13 +45,13 @@ export class TokenStorage {
 
     const token = this.getDecodedToken();
 
-    if (token == null || token == undefined) {
+    if (token === null || token === undefined) {
       return null;
     }
 
-    let user: User = new User();
-    user.username = token.sub;
-    user.role = token.scopes[0].authority;
+    let user = new User();
+    user.name = token.sub;
+    user.userRole = token.scopes[0].authority;
 
     return user;
   }

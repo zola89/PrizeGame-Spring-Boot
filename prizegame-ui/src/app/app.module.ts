@@ -16,7 +16,7 @@ import {TokenStorage} from "./core/auth/token.storage";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BaseComponent} from "./core/base/base.component";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material";
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatIconModule} from "@angular/material";
 import {AdminGuardService} from "./core/auth/admin-guard.service";
 import {LoginComponent} from "./public/login/login.component";
 import {UnauthorizedComponent} from "./public/unauthorized/unauthorized.component";
@@ -60,6 +60,7 @@ import {CodeService} from "./restricted/code/code.service";
     CustomMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
     AppRoutingModule,
     Ng4LoadingSpinnerModule.forRoot()
   ],

@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef, MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MatPaginator, MatTable, MatTableDataSource} from '@angular/material';
 import {User} from './user.model';
 import {Router} from '@angular/router';
 import {UserService} from './user.service';
@@ -15,15 +15,20 @@ import {BaseComponent} from '../../core/base/base.component';
 export class UserComponent extends BaseComponent implements OnInit {
 
   dataSource = new MatTableDataSource<User>();
+  displayedColumns: string[] = ['id', 'name', 'address', 'email', 'phone', 'role', 'actions'];
   dialogRef: MatDialogRef<ConfirmationDialogComponent>;
   screenHeight: number;
+
+  @ViewChild('table')
+  table: MatTable<User>;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.screenHeight = window.innerHeight;
   }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
   constructor(private router: Router, private userService: UserService, public dialog: MatDialog, tokenStorage: TokenStorage) {
     super(tokenStorage);
@@ -34,7 +39,7 @@ export class UserComponent extends BaseComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.userService.getUsers().subscribe(
       data => {
-        this.dataSource.data = data;
+            this.dataSource.data = data;
       }
     );
   }
@@ -51,8 +56,8 @@ export class UserComponent extends BaseComponent implements OnInit {
     this.userService.deleteById(id).subscribe(
       data => {
         this.userService.getUsers().subscribe(
-          data => {
-            this.dataSource.data = data;
+          data1 => {
+            this.dataSource.data = data1;
             this.router.navigateByUrl('configure_system/user');
           }
         );
@@ -76,6 +81,11 @@ export class UserComponent extends BaseComponent implements OnInit {
       }
       this.dialogRef = null;
     });
+  }
+
+
+  openCodePage(index: number, id: any) {
+    this.router.navigateByUrl('code');
   }
 
 }

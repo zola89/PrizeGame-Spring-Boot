@@ -2,30 +2,61 @@
 
   <mat-table #table [dataSource]="dataSource">
 
-    <ng-container matColumnDef="username">
-      <mat-header-cell *matHeaderCellDef> UserName</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.username}}</mat-cell>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="['username', 'actions']"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: ['username', 'actions'];" (click)="edit(row.id)"></mat-row>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Full name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.address}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef>Phone</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.phone}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef>User Role</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.role}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="edit(row.id)"></mat-row>
+
 
     <!-- actions -->
     <ng-container matColumnDef="actions">
 
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Add New" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        <button mat-icon-button color="primary" title="Add New" (click)="addNew()">
+          <mat-icon aria-label="Add">add</mat-icon>
         </button>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Edit" (click)="edit(row.id)">
+
+        <button mat-icon-button color="primary" title="Edit" (click)="edit(row.id)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
-
-        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Delete" (click)="$event.stopPropagation();openConfirmationDialog(i, row.id)">
+        <div> </div>
+        <button mat-icon-button color="primary" title="Delete" (click)="$event.stopPropagation();openConfirmationDialog(i, row.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <div> </div>
+        <button mat-icon-button color="primary" title="Code" (click)="$event.stopPropagation();openCodePage(i, row.id)">
+          <mat-icon aria-label="Code">card_giftcard</mat-icon>
         </button>
       </mat-cell>
 

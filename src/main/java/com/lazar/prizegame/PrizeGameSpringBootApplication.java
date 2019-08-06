@@ -47,36 +47,34 @@ public class PrizeGameSpringBootApplication implements CommandLineRunner{
     
     @Transactional
     private void saveData(){
-    	saveDataWithApproach1();
+    	//saveDataWithApproach1();
         // saveDataWithApproach2();
     }
     
     private void saveDataWithApproach1(){
-        User user1 = new User(13,"Lazar", "12345", "012312412", "zola89@gmail.com", "27Marta 28", UserRole.ADMIN.getValue());
-        User user2= new User(14,"Nada","12345", "0123233412", "nbogdano@calliduscloud.com", "27 Marta 28", UserRole.ADMIN.getValue());
-        
-        Code code1 = new Code("12345462", PrizeType.CASH.getValue(), user1);
-        Code code2 = new Code("12345466", PrizeType.CASH.getValue(), user1,new Timestamp(System.currentTimeMillis()));
-        
-
-        Code code3 = new Code("12345423", PrizeType.CASH.getValue(), user2);
-        Code code4 = new Code("12345432", PrizeType.CASH.getValue(), user2);
-        
+//        User user1 = new User(13, "Lazar", "12345", "012312412", "zola89@gmail.com", "27Marta 28", UserRole.ADMIN);
+//        User user2= new User(14 , "Nada","12345", "0123233412", "nbogdano@calliduscloud.com", "27 Marta 28", UserRole.ADMIN);
+//
+//        Code code1 = new Code(145,"12345462", PrizeType.CASH, new Timestamp(System.currentTimeMillis()) , user1);
+//        Code code2 = new Code(146,"12345466", PrizeType.CASH, new Timestamp(System.currentTimeMillis()), user1);
+//        Code code3 = new Code(147,"12345423", PrizeType.CASH, new Timestamp(System.currentTimeMillis()) , user2);
+//        Code code4 = new Code(148,"12345432", PrizeType.CASH, new Timestamp(System.currentTimeMillis()) , user2);
+//
         //Code code5 = new Code("12345678", "automobil", user2);
         //codeRepository.save(code5);
-        user1.setCodes(new HashSet<Code>(){{
-            add(code1);
-            add(code2);
-        }});
-        
-        user2.setCodes(new HashSet<Code>(){{
-            add(code3);
-            add(code4);
-        }});
-        
-        // save users
-        userRepository.save(user1);
-        userRepository.save(user2);
+//        user1.setCodes(new HashSet<Code>(){{
+//            add(code1);
+//            add(code2);
+//        }});
+//
+//        user2.setCodes(new HashSet<Code>(){{
+//            add(code3);
+//            add(code4);
+//        }});
+//
+//        // save users
+//        userRepository.save(user1);
+//        userRepository.save(user2);
     }
     
     @Transactional

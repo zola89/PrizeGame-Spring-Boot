@@ -1,5 +1,10 @@
 package com.lazar.prizegame.model.enums;
 
+import lombok.*;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum UserRole {
 	
 	ADMIN("Admin"),
@@ -8,19 +13,7 @@ public enum UserRole {
 
     SYSTEM_ADMIN("System Admin");
 
-    public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	private String value;
-
-    UserRole(String value) {
-        this.value = value;
-    }
+    private String value;
 
     public static UserRole getByValue(String s) {
 
@@ -34,6 +27,5 @@ public enum UserRole {
 
         return null;
     }
-
 
 }

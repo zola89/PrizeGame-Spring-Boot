@@ -1,13 +1,13 @@
 <div class="mat-elevation-z8">
 
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #codeTable [dataSource]="dataSource">
 
     <ng-container matColumnDef="prizeCode">
       <mat-header-cell *matHeaderCellDef>Prize Code</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.prizeCode}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="prizeCode">
+    <ng-container matColumnDef="prizeType">
       <mat-header-cell *matHeaderCellDef>Prize Type</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.prizeType}}</mat-cell>
     </ng-container>
@@ -19,17 +19,17 @@
     <ng-container matColumnDef="actions">
 
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Add New" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        <button mat-icon-button color="primary" title="Add New" (click)="addNew()">
+          <mat-icon aria-label="Add">add</mat-icon>
         </button>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Edit" (click)="edit(row.id)">
+        <button mat-icon-button color="primary" title="Edit" (click)="edit(row.id)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button *ngIf="currentUser.isAdmin()" color="primary" title="Delete" (click)="$event.stopPropagation();openConfirmationDialog(i, row.id)">
+        <button mat-icon-button color="primary" title="Delete" (click)="$event.stopPropagation();openConfirmationDialog(i, row.id)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
