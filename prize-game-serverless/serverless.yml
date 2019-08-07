@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: prize-game
+service: prize-game-serverless
 #app: your-app-name
 #tenant: your-tenant-name
 
@@ -22,11 +22,18 @@ service: prize-game
 provider:
   name: aws
   runtime: java8
+  environment:
+    USER_TABLE_NAME: User
 
 # you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: dev
+  region: us-east-1
 
+iamRoleStatements:
+   - Effect: Allow
+     Action:
+       - "dynamodb:*"
+     Resource: "*"
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
@@ -49,11 +56,26 @@ provider:
 
 # you can add packaging information here
 package:
-  artifact: target/hello-dev.jar
+  artifact: 'target/${self:service}-${self:provider.stage}.jar'
 
 functions:
-  hello:
-    handler: com.serverless.Handler
+#  listUsers:
+#    handler: com.serverless.ListUsersHandler
+
+  getUser:
+    handler: com.serverless.GetUserHandler
+    events:
+      - http:
+          path: /user/{id}
+          method: get
+  createUser:
+    handler: com.serverless.CreateUserHandler
+    events:
+      - http:
+          path: /user
+          method: post
+#  deleteUser:
+#    handler: com.serverless.DeleteUserHandler
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -93,6 +115,25 @@ functions:
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: User
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: name
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
 
 # you can add CloudFormation resource templates here
 #resources:
