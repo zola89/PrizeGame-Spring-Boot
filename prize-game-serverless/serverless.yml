@@ -67,19 +67,36 @@ package:
 functions:
 #  listUsers:
 #    handler: com.serverless.ListUsersHandler
-
+  listUsers:
+    handler: com.serverless.ListUsersHandler
+    events:
+      - http:
+          path: /users
+          method: get
   getUser:
     handler: com.serverless.GetUserHandler
     events:
       - http:
-          path: /user/{id}
+          path: /users/{id}
           method: get
   createUser:
     handler: com.serverless.CreateUserHandler
     events:
       - http:
-          path: /user
+          path: /users
           method: post
+  deleteUser:
+    handler: com.serverless.DeleteUserHandler
+    events:
+      - http:
+          path: /users/{id}
+          method: delete
+  updateUser:
+    handler: com.serverless.UpdateUserHandler
+    events:
+      - http:
+          path: /users/{id}
+          method: put
 #  deleteUser:
 #    handler: com.serverless.DeleteUserHandler
 #    The following are a few example events you can configure
