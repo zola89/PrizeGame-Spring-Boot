@@ -18,16 +18,19 @@ service: prize-game-serverless
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
-
+custom:
+  userTableName: 'User'
+  codeTableName: 'Code'
 provider:
   name: aws
   runtime: java8
   environment:
-    USER_TABLE_NAME: User
-
+    USER_TABLE_NAME: ${self:custom.userTableName}
+    CODE_TABLE_NAME: ${self:custom.codeTableName}
+ 
 # you can overwrite defaults here
-  stage: dev
-  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
 
 iamRoleStatements:
     - Effect: Allow
@@ -39,7 +42,7 @@ iamRoleStatements:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - { "Fn::GetAtt": ["UsersTable", "Arn" ] }
+        - { "Fn::GetAtt": ["UserTable", "Arn" ] }
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
@@ -68,34 +71,70 @@ functions:
 #  listUsers:
 #    handler: com.serverless.ListUsersHandler
   listUsers:
-    handler: com.serverless.ListUsersHandler
+    handler: com.serverless.user.ListUsersHandler
     events:
       - http:
           path: /users
           method: get
   getUser:
-    handler: com.serverless.GetUserHandler
+    handler: com.serverless.user.GetUserHandler
     events:
       - http:
           path: /users/{id}
           method: get
   createUser:
-    handler: com.serverless.CreateUserHandler
+    handler: com.serverless.user.CreateUserHandler
     events:
       - http:
           path: /users
           method: post
   deleteUser:
-    handler: com.serverless.DeleteUserHandler
+    handler: com.serverless.user.DeleteUserHandler
     events:
       - http:
           path: /users/{id}
           method: delete
   updateUser:
-    handler: com.serverless.UpdateUserHandler
+    handler: com.serverless.user.UpdateUserHandler
     events:
       - http:
           path: /users/{id}
+          method: put
+  listCodes:
+    handler: com.serverless.code.ListCodesHandler
+    events:
+      - http:
+          path: /codes
+          method: get
+  getCode:
+    handler: com.serverless.code.GetCodeHandler
+    events:
+      - http:
+          path: /codes/{id}
+          method: get
+  getCodeByUserId:
+    handler: com.serverless.code.GetCodeByUserIdHandler
+    events:
+      - http:
+          path: /codes/user/{id}
+          method: get  
+  createCode:
+    handler: com.serverless.code.CreateCodeHandler
+    events:
+      - http:
+          path: /codes
+          method: post
+  deleteCode:
+    handler: com.serverless.code.DeleteCodeHandler
+    events:
+      - http:
+          path: /codes/{id}
+          method: delete
+  updateCode:
+    handler: com.serverless.code.UpdateCodeHandler
+    events:
+      - http:
+          path: /codes/{id}
           method: put
 #  deleteUser:
 #    handler: com.serverless.DeleteUserHandler
@@ -140,10 +179,10 @@ functions:
 #      variable2: value2
 resources:
   Resources:
-    UsersTable:
+    UserTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: User
+        TableName: ${self:custom.userTableName}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S

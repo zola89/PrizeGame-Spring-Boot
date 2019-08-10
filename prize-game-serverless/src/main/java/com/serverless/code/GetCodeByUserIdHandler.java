@@ -1,18 +1,17 @@
-package com.serverless;
+package com.serverless.code;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.log4j.Logger;
 import java.util.Collections;
 import java.util.Map;
 
-import com.serverless.dal.User;
-import com.serverless.dal.User;
+import org.apache.log4j.Logger;
 
-public class GetUserHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.serverless.ApiGatewayResponse;
+import com.serverless.Response;
+import com.serverless.dal.Code;
+
+public class GetCodeByUserIdHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
 	private final Logger logger = Logger.getLogger(this.getClass());
 
@@ -22,30 +21,30 @@ public class GetUserHandler implements RequestHandler<Map<String, Object>, ApiGa
     try {
         // get the 'pathParameters' from input
         Map<String,String> pathParameters =  (Map<String,String>)input.get("pathParameters");
-        String userId = pathParameters.get("id");
+        String userId = pathParameters.get("user_id");
 
-        // get the User by id
-        User user = new User().get(userId);
+        // get the Code by id
+        Code code = new Code().getCodeByUser_id(userId);
 
         // send the response back
-        if (user != null) {
+        if (code != null) {
           return ApiGatewayResponse.builder()
       				.setStatusCode(200)
-      				.setObjectBody(user)
+      				.setObjectBody(code)
       				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
       				.build();
         } else {
           return ApiGatewayResponse.builder()
       				.setStatusCode(404)
-              .setObjectBody("User with id: '" + userId + "' not found.")
+              .setObjectBody("Code with user_id: '" + userId + "' not found.")
       				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
       				.build();
         }
     } catch (Exception ex) {
-        logger.error("Error in retrieving user: " + ex);
+        logger.error("Error in retrieving code: " + ex);
 
         // send the error response back
-  			Response responseBody = new Response("Error in retrieving user: ", input);
+  			Response responseBody = new Response("Error in retrieving code: ", input);
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)
@@ -54,3 +53,4 @@ public class GetUserHandler implements RequestHandler<Map<String, Object>, ApiGa
     }
 	}
 }
+

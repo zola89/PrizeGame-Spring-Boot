@@ -1,4 +1,4 @@
-package com.serverless;
+package com.serverless.user;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.List;
 
+import com.serverless.ApiGatewayResponse;
+import com.serverless.Response;
 import com.serverless.dal.User;
 
 public class ListUsersHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {

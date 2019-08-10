@@ -1,4 +1,4 @@
-package com.serverless;
+package com.serverless.code;
 
 import java.util.Collections;
 import java.util.Map;
@@ -9,10 +9,11 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.serverless.dal.User;
+import com.serverless.ApiGatewayResponse;
+import com.serverless.Response;
+import com.serverless.dal.Code;
 
-public class CreateUserHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
-
+public class CreateCodeHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 	private final Logger logger = Logger.getLogger(this.getClass());
 
 	@Override
@@ -22,29 +23,28 @@ public class CreateUserHandler implements RequestHandler<Map<String, Object>, Ap
           // get the 'body' from input
           JsonNode body = new ObjectMapper().readTree((String) input.get("body"));
 
-          // create the User object for post
-          User user = new User();
-          // user.setId(body.get("id").asText());
-          user.setName(body.get("name").asText());
-          user.setPassword(body.get("password").asText());
-          user.setPhone(body.get("phone").asText());
-          user.setAddress(body.get("address").asText());
-          user.setUser_role(body.get("user_role").asText());
+          // create the Code object for post
+          Code code = new Code();
+          // code.setId(body.get("id").asText());
+          code.setPrize_code(body.get("prize_code").asText());
+          code.setPrize_time(body.get("prize_time").asText());
+          code.setUser_id(body.get("user_id").asText());
+          code.setPrize_type(body.get("prize_type").asText());
 
-          user.save(user);
+          code.save(code);
 
           // send the response back
       		return ApiGatewayResponse.builder()
       				.setStatusCode(200)
-      				.setObjectBody(user)
+      				.setObjectBody(code)
       				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
       				.build();
 
       } catch (Exception ex) {
-          logger.error("Error in saving user: " + ex);
+          logger.error("Error in saving code: " + ex);
 
           // send the error response back
-    			Response responseBody = new Response("Error in saving user: ", input);
+    			Response responseBody = new Response("Error in saving code: ", input);
     			return ApiGatewayResponse.builder()
     					.setStatusCode(500)
     					.setObjectBody(responseBody)
@@ -52,4 +52,5 @@ public class CreateUserHandler implements RequestHandler<Map<String, Object>, Ap
     					.build();
       }
 	}
+
 }
