@@ -33,6 +33,8 @@ public class UpdateUserHandler implements RequestHandler<Map<String, Object>, Ap
               JsonNode body = new ObjectMapper().readTree((String) input.get("body"));
 
               	// update the User object for post
+              	if (body.get("email") != null)
+              		user.setEmail(body.get("email").asText());
     			if (body.get("name") != null)
     				user.setName(body.get("name").asText());
     			if (body.get("password") != null)

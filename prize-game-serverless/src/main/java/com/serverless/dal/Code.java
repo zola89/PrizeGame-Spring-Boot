@@ -47,8 +47,9 @@ public class Code {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	@DynamoDBRangeKey(attributeName = "prize_code")	
+
+	@DynamoDBIndexHashKey(attributeName = "prize_code", globalSecondaryIndexName = "prize_code-index")	
+	@DynamoDBAttribute(attributeName = "prize_code")	
 	public String getPrize_code() {
 		return prize_code;
 	}
