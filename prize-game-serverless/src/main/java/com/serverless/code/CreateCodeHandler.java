@@ -43,7 +43,7 @@ public class CreateCodeHandler implements RequestHandler<Map<String, Object>, Ap
 			logger.error("Error in saving code: " + ex);
 
 			// send the error response back
-			Response responseBody = new Response("Error in saving code: ", input);
+			Response responseBody = new Response("Error in saving code: " + ex.getMessage(), input);
 			return ApiGatewayResponse.builder().setStatusCode(500).setObjectBody(responseBody)
 					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless")).build();
 		}

@@ -45,7 +45,7 @@ public class GetCodesByUserIdHandler implements RequestHandler<Map<String, Objec
         logger.error("Error in retrieving code: " + ex);
 
         // send the error response back
-  			Response responseBody = new Response("Error in retrieving code: ", input);
+  			Response responseBody = new Response("Error in retrieving code: " + ex, input);
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)

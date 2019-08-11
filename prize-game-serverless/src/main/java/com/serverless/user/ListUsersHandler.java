@@ -34,7 +34,7 @@ public class ListUsersHandler implements RequestHandler<Map<String, Object>, Api
         logger.error("Error in listing users: " + ex);
 
         // send the error response back
-  			Response responseBody = new Response("Error in listing users: ", input);
+  			Response responseBody = new Response("Error in listing users: " + ex, input);
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)

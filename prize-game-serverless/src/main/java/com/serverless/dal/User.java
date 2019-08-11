@@ -170,6 +170,13 @@ public class User {
 
 	public void save(User user) throws IOException {
 		logger.info("Users - save(): " + user.toString());
+		
+		User existingUser = getUserByEmail(user.getEmail());
+		
+		if(existingUser != null) {
+			throw new RuntimeException("User with the email '" + user.getEmail() + "' already exists at id: " + existingUser.getId());
+		}
+		
 		this.mapper.save(user);
 	}
 
