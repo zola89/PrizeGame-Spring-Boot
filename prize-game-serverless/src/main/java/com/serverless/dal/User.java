@@ -147,14 +147,15 @@ public class User {
 		}
 		return user;
 	}
+
 	public User getUserByEmail(String email) {
 		User user = null;
 
 		HashMap<String, AttributeValue> av = new HashMap<String, AttributeValue>();
 		av.put(":v1", new AttributeValue().withS(email));
 
-		DynamoDBQueryExpression<User> queryExp = new DynamoDBQueryExpression<User>()
-				.withKeyConditionExpression("email = :v1").withExpressionAttributeValues(av);
+		DynamoDBQueryExpression<User> queryExp = new DynamoDBQueryExpression<User>().withIndexName("email-index")
+				.withConsistentRead(false).withKeyConditionExpression("email = :v1").withExpressionAttributeValues(av);
 
 		PaginatedQueryList<User> result = this.mapper.query(User.class, queryExp);
 		if (result.size() > 0) {

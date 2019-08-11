@@ -37,7 +37,7 @@ public class GetUserByEmailHandler implements RequestHandler<Map<String, Object>
         } else {
           return ApiGatewayResponse.builder()
       				.setStatusCode(404)
-              .setObjectBody("User with user_id: '" + email + "' not found.")
+              .setObjectBody("User with email: '" + email + "' not found.")
       				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
       				.build();
         }
