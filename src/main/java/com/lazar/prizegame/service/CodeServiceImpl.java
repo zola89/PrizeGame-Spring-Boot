@@ -114,14 +114,7 @@ public class CodeServiceImpl implements CodeService {
 
     protected Code createNewInstanceOfEntityClass() {
 
-        Code code = null;
-
-        try {
-            code = getEntityClass().newInstance();
-        } catch (Exception e) {
-        }
-
-        return code;
+        return new Code();
     }
 
     protected Class<Code> getEntityClass() {

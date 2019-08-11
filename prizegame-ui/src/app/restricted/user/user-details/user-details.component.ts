@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-import {User} from "../user.model";
-import {UserService} from "../user.service";
+import {User} from '../user.model';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -13,7 +13,8 @@ export class UserDetailsComponent implements OnInit {
 
   id: number;
   user: User = new User();
-  check: boolean = false;
+  check = false;
+  roles = ['ADMIN', 'USER'];
 
   formControl = new FormControl('', [
     Validators.required,
@@ -28,8 +29,7 @@ export class UserDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
-    
-    
+
     if (this.id) {
       this.userService.getById(this.id).subscribe(
         data => {
@@ -68,7 +68,7 @@ export class UserDetailsComponent implements OnInit {
       data => {
         this.navigateBack();
       }
-    )
+    );
   }
 
   public onUpdate(): void {
@@ -76,7 +76,7 @@ export class UserDetailsComponent implements OnInit {
       data => {
         this.navigateBack();
       }
-    )
+    );
   }
 
   changeState() {

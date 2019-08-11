@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/resources/gift-box-favicon.ico",
+              "src/resources/favicon.ico",
               "src/resources"
             ],
             "styles": [
