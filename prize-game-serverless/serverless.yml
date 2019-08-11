@@ -146,6 +146,12 @@ functions:
       - http:
           path: /codes/prize/{prize_code}
           method: get   
+  insertUserPrizeCode:
+    handler: com.serverless.code.InsertUserPrizeCodeHandler
+    events:
+      - http:
+          path: /codes/prize
+          method: post
   createCode:
     handler: com.serverless.code.CreateCodeHandler
     events:

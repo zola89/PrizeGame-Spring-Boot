@@ -67,7 +67,7 @@ public class UpdateUserHandler implements RequestHandler<Map<String, Object>, Ap
           logger.error("Error in updating user: " + ex);
 
           // send the error response back
-    			Response responseBody = new Response("Error in updating user: ", input);
+    			Response responseBody = new Response("Error in updating user: " + ex, input);
     			return ApiGatewayResponse.builder()
     					.setStatusCode(500)
     					.setObjectBody(responseBody)

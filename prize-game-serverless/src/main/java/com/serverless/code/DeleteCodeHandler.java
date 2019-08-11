@@ -43,7 +43,7 @@ public class DeleteCodeHandler implements RequestHandler<Map<String, Object>, Ap
         logger.error("Error in deleting code: " + ex);
 
         // send the error response back
-  			Response responseBody = new Response("Error in deleting code: ", input);
+  			Response responseBody = new Response("Error in deleting code: " + ex, input);
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)

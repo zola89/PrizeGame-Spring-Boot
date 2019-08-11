@@ -32,7 +32,7 @@ public class ListCodesHandler implements RequestHandler<Map<String, Object>, Api
         logger.error("Error in listing codes: " + ex);
 
         // send the error response back
-  			Response responseBody = new Response("Error in listing codes: ", input);
+  			Response responseBody = new Response("Error in listing codes: " + ex, input);
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)

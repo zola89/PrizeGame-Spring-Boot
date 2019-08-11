@@ -46,7 +46,7 @@ public class CreateUserHandler implements RequestHandler<Map<String, Object>, Ap
 			logger.error("Error in saving user: " + ex);
 
 			// send the error response back
-			Response responseBody = new Response("Error in saving user: ", input);
+			Response responseBody = new Response("Error in saving user: " + ex.getMessage(), input);
 			return ApiGatewayResponse.builder().setStatusCode(500).setObjectBody(responseBody)
 					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless")).build();
 		}

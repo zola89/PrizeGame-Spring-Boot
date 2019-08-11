@@ -3,6 +3,7 @@ package com.serverless.dal;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -14,11 +15,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 
 @DynamoDBTable(tableName = "PLACEHOLDER_CODE_TABLE_NAME")
 public class Code {
@@ -131,6 +133,14 @@ public class Code {
 
 	public void save(Code code) throws IOException {
 		logger.info("Codes - save(): " + code.toString());
+		
+		logger.debug("Codes - save(): checking if exists Code with price_code: " + code.getPrize_code());
+
+		Code existingCode = getCodeByPrize_code(code.getPrize_code());
+		
+		if(existingCode != null)
+			throw new RuntimeException("Error, Code item with the same prize_code already exists: " + existingCode.getId());
+		
 		this.mapper.save(code);
 	}
 
@@ -141,6 +151,22 @@ public class Code {
 				.withConsistentReads(DynamoDBMapperConfig.ConsistentReads.CONSISTENT)
 				.withSaveBehavior(DynamoDBMapperConfig.SaveBehavior.UPDATE).build();
 		this.mapper.save(code, dynamoDBMapperConfig);
+	}
+	
+	public void updateConditional(Code code) throws IOException {
+		logger.info("Codes - update(): " + code.toString());
+
+		DynamoDBMapperConfig dynamoDBMapperConfig = new DynamoDBMapperConfig.Builder()
+				.withConsistentReads(DynamoDBMapperConfig.ConsistentReads.CONSISTENT)
+				.withSaveBehavior(DynamoDBMapperConfig.SaveBehavior.UPDATE).build();
+		
+		DynamoDBSaveExpression saveExpression = new DynamoDBSaveExpression();
+		Map<String, ExpectedAttributeValue> expected = new HashMap<String, ExpectedAttributeValue>();
+		expected.put("user_id", new ExpectedAttributeValue(false));
+		expected.put("prize_time", new ExpectedAttributeValue(false));
+		saveExpression.setExpected(expected);
+		
+		this.mapper.save(code, saveExpression, dynamoDBMapperConfig);
 	}
 
 	public Boolean delete(String id) throws IOException {
