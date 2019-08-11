@@ -27,5 +27,7 @@ public interface CodeService {
 
     CodeDTO findDtoById(int id);
 
+    Code getByPrizeCode(String prizeCode);
+
     Code updateDTO(CodeDTO dto);
 }

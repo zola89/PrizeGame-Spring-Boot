@@ -1,3 +1,5 @@
+import {Code} from '../code/code.model';
+
 export class User {
 
   id?: number;
@@ -8,6 +10,7 @@ export class User {
   address?: string;
   userRole?: string;
   confirmPassword?: string;
+  codes?: Code[];
 
   public isAdmin(): boolean {
     let allowedRoles = ['ADMIN'];

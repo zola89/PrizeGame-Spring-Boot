@@ -1,4 +1,28 @@
-<div style="height: 89vh">
+<div class="cover">
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div class="central-text-box">
+            <div *ngIf="!code.prizeType">
+                <h1 class="child-text-box">Enter the Prize Code:</h1>
+                <div class="child-text-box">
+                    <div class="form">
+                        <mat-form-field color="primary">
+                            <input matInput #input class="form-control" [(ngModel)]="code.prizeCode" name="prizeCode"
+                                   required>
+                            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="child-text-box">
+                    <button class="btn-full mat-button mat-button-primary" (click)="getPrize()">SUBMIT</button>
+                </div>
+            </div>
+            <div *ngIf="code.prizeType">
+                <h1 class="child-text-box">Prize you got is: {{code.prizeType}}</h1>
+                <div class="child-text-box">
+                    <button class="btn-full mat-button mat-button-primary" (click)="viewPrizes()">View Prizes</button>
+                </div>
+            </div>
 
-  <h1>Welcome to Prize game. How to create a jackpot spinner using angular animation module. </h1>
+        </div>
+    </form>
 </div>

@@ -35,4 +35,8 @@ export class CodeService {
     return this.http.put<Code>(this.url + '/' + id, code);
   }
 
+  getByPrizeCode(prizeCode: any): Observable<Code> {
+    return this.http.get<Code>(this.url + '/prize/' + prizeCode);
+  }
+
 }

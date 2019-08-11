@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8 uvs-inner-padding">
+<div class="mat-elevation-z8">
 
   <h3 *ngIf="id" mat-dialog-title>Update User</h3>
   <h3 *ngIf="!id" mat-dialog-title>New User</h3>
@@ -8,7 +8,7 @@
     <div class="form">
       <mat-form-field color="primary">
         <mat-label>Username</mat-label>
-        <input matInput #input class="form-control" [(ngModel)]="user.username" name="username" required>
+        <input matInput #input class="form-control" [(ngModel)]="user.name" name="username" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

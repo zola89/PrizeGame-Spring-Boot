@@ -2,6 +2,7 @@ package com.lazar.prizegame.controller;
 
 import com.lazar.prizegame.dto.CodeDTO;
 import com.lazar.prizegame.model.Code;
+import com.lazar.prizegame.model.User;
 import com.lazar.prizegame.service.CodeService;
 import com.lazar.prizegame.service.UserService;
 import com.lazar.prizegame.utils.headers.Headers;
@@ -67,6 +68,10 @@ public class CodeController {
         return new ResponseEntity<>(null, headers, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/prize/{prizeCode}")
+    public Code getByPrizeCode(@PathVariable(value = "prizeCode") String prizeCode) {
+        return codeService.getByPrizeCode(prizeCode);
+    }
     
     @GetMapping("/user/{user_id}")
     public List<Code> getCodeByUserId(@PathVariable int user_id) {

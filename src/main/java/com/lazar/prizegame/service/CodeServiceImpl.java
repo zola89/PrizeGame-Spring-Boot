@@ -107,6 +107,11 @@ public class CodeServiceImpl implements CodeService {
         return code;
     }
 
+    @Override
+    public Code getByPrizeCode(String prizeCode) {
+        return codeRepository.findByPrizeCode(prizeCode);
+    }
+
     protected Code createNewInstanceOfEntityClass() {
 
         Code code = null;

@@ -3,7 +3,9 @@
   <mat-toolbar color="primary">
     <mat-toolbar-row>
 
-      <span title="Home page"><img src="assets/logo.png" (click)="openHomePage()" style="cursor: pointer; padding-top: 9px"></span>
+      <span title="Home page">
+        <mat-icon aria-label="HomePage" (click)="openHomePage()" class="pointer">favorite</mat-icon>
+      </span>
 
       <button mat-button (click)="codes()">Codes</button>
       <button mat-button (click)="users()">Users</button>
@@ -13,7 +15,7 @@
 
         <span style="font-size: 14px">Logged in as {{currentUser?.name}}</span>
         <button mat-button (click)="editProfile()" title="Profile" class="mat-icon-button">
-          <mat-icon aria-label="Edit" svgIcon="face"></mat-icon>
+          <mat-icon aria-label="Edit">face</mat-icon>
         </button>
         <button mat-button (click)="quickGuide()" title="Help" class="mat-icon-button">
           <mat-icon aria-label="Logout">help_outline</mat-icon>
