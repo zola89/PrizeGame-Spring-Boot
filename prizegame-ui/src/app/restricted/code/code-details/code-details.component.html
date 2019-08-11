@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8 uvs-inner-padding">
+<div class="mat-elevation-z8 inner-padding">
 
   <h3 *ngIf="id" mat-dialog-title>Update Code</h3>
   <h3 *ngIf="!id" mat-dialog-title>New Code</h3>
@@ -16,7 +16,9 @@
     <div class="form">
       <mat-form-field color="primary">
         <mat-label>Prize Type</mat-label>
-        <input matInput #prizeType class="form-control" [(ngModel)]="code.prizeType" name="prizeType" required>
+        <mat-select [(ngModel)]="code.prizeType" name="prizeType">
+          <mat-option *ngFor="let type of prizeTypes" [value]="type">{{type}}</mat-option>
+        </mat-select>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

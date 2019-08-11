@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../user/user.model";
-import {FormControl, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../user/user.service";
-import {Code} from "../code.model";
-import {CodeService} from "../code.service";
+import {Component, OnInit} from '@angular/core';
+import {Code} from '../code.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, Validators} from '@angular/forms';
+import {CodeService} from '../code.service';
+
 
 @Component({
   selector: 'app-prize-details',
@@ -15,7 +14,7 @@ export class CodeDetailsComponent implements OnInit {
 
   id: number;
   code: Code = new Code();
-  check: boolean = false;
+  prizeTypes = ['CASH', 'GIFT_CARD', 'HOLIDAY', 'MOBILE_PHONE', 'SHIRT'];
 
   formControl = new FormControl('', [
     Validators.required
@@ -64,11 +63,13 @@ export class CodeDetailsComponent implements OnInit {
 
   public onSave(): void {
 
+    this.code.prizeTime = new Date();
+
     this.codeService.save(this.code).subscribe(
         data => {
           this.navigateBack();
         }
-    )
+    );
   }
 
   public onUpdate(): void {
@@ -76,7 +77,7 @@ export class CodeDetailsComponent implements OnInit {
         data => {
           this.navigateBack();
         }
-    )
+    );
   }
 
   navigateBack() {

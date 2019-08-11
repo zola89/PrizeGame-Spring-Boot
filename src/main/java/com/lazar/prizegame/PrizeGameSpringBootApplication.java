@@ -1,21 +1,14 @@
 package com.lazar.prizegame;
 
-import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.List;
-
+import com.lazar.prizegame.model.Code;
+import com.lazar.prizegame.model.User;
+import com.lazar.prizegame.repository.CodeRepository;
+import com.lazar.prizegame.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.lazar.prizegame.model.Code;
-import com.lazar.prizegame.model.User;
-import com.lazar.prizegame.model.enums.PrizeType;
-import com.lazar.prizegame.model.enums.UserRole;
-import com.lazar.prizegame.repository.CodeRepository;
-import com.lazar.prizegame.repository.UserRepository;
 
 
 @SpringBootApplication

@@ -6,11 +6,11 @@ main {
   max-height: 50vh;
 }
 
-.uvs-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
-.uvs-inner-padding {
+.inner-padding {
   padding: 20px 40px;
 }
 
@@ -44,19 +44,19 @@ main {
   font-size: 50px !important;
 }
 
-.uvs-success {
+.success {
   color: #11c420;
 }
 
-.uvs-failed {
+.failed {
   color: #ff0000;
 }
 
-.uvs-canceled {
+.canceled {
   color: rgba(0, 0, 0, .45);
 }
 
-.uvs-timedout {
+.timedout {
   color: #ff8c00;
 }
 
@@ -64,14 +64,14 @@ main {
   font-size: 16px
 }
 
-.uvs_grid_wrapper {
+.grid_wrapper {
   width: auto;
   background: #fff;
   overflow: hidden;
   position: relative;
 }
 
-.uvs-info-note {
+.info-note {
   background-color: rgba(108, 166, 227, .12);
   padding: 10px
 }

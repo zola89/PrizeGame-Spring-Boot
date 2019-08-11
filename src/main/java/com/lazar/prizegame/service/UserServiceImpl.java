@@ -110,6 +110,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User mapEntityFromDTO(UserDTO dto, User user) {
 
+        if(user == null) {
+            return null;
+        }
+
         user.setId(dto.getId());
 
         if (dto.getPassword() != null && !dto.getPassword().trim().isEmpty()) {
@@ -124,15 +128,7 @@ public class UserServiceImpl implements UserService {
     }
 
     protected User createNewInstanceOfEntityClass() {
-
-        User user = null;
-
-        try {
-            user = getEntityClass().newInstance();
-        } catch (Exception e) {
-        }
-
-        return user;
+        return  new User();
     }
 
     protected Class<User> getEntityClass() {
