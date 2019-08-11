@@ -112,12 +112,18 @@ functions:
       - http:
           path: /codes/{id}
           method: get
-  getCodeByUserId:
-    handler: com.serverless.code.GetCodeByUserIdHandler
+  getCodesByUserId:
+    handler: com.serverless.code.GetCodesByUserIdHandler
     events:
       - http:
-          path: /codes/user/{id}
-          method: get  
+          path: /codes/user/{user_id}
+          method: get 
+  getCodeByPrizeCode:
+    handler: com.serverless.code.GetCodeByPrizeCodeHandler
+    events:
+      - http:
+          path: /codes/prize/{prize_code}
+          method: get   
   createCode:
     handler: com.serverless.code.CreateCodeHandler
     events:

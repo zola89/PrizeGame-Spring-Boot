@@ -11,7 +11,7 @@ import com.serverless.ApiGatewayResponse;
 import com.serverless.Response;
 import com.serverless.dal.Code;
 
-public class GetCodeByUserIdHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
+public class GetCodeByPrizeCodeHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
 	private final Logger logger = Logger.getLogger(this.getClass());
 
@@ -21,10 +21,10 @@ public class GetCodeByUserIdHandler implements RequestHandler<Map<String, Object
     try {
         // get the 'pathParameters' from input
         Map<String,String> pathParameters =  (Map<String,String>)input.get("pathParameters");
-        String userId = pathParameters.get("user_id");
+        String prizeCode = pathParameters.get("prize_code");
 
-        // get the Code by id
-        Code code = new Code().getCodeByUser_id(userId);
+        // get the Code by prize_code
+        Code code = new Code().getCodeByPrize_code(prizeCode);
 
         // send the response back
         if (code != null) {
@@ -36,7 +36,7 @@ public class GetCodeByUserIdHandler implements RequestHandler<Map<String, Object
         } else {
           return ApiGatewayResponse.builder()
       				.setStatusCode(404)
-              .setObjectBody("Code with user_id: '" + userId + "' not found.")
+              .setObjectBody("Code with prize_code: '" + prizeCode + "' not found.")
       				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
       				.build();
         }
