@@ -68,5 +68,31 @@ public class UserController {
         return userService.findUserRoles();
     }
 
+    @PostMapping(value = "/validate")
+    public ResponseEntity<UserDTO> validateUser(@RequestBody UserDTO userDTO) {
+    	
+    	if(userDTO.getEmail() == null || userDTO.getEmail().isEmpty()) {
+    		HttpHeaders headers = HeadersHelper.add(Headers.ERROR_MESSAGE, "Email can not be empty.");
+    		return new ResponseEntity<>(null, headers, HttpStatus.BAD_REQUEST);
+    	}
+    	if(userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
+    		HttpHeaders headers = HeadersHelper.add(Headers.ERROR_MESSAGE, "Password can not be empty.");
+    		return new ResponseEntity<>(null, headers, HttpStatus.BAD_REQUEST);
+    	}
+    	
+    	User validatedUser = userService.validateUser(userDTO.getEmail(), userDTO.getPassword());
+    	
+    	if(validatedUser == null) {
+    		
+    		HttpHeaders headers = HeadersHelper.add(Headers.ERROR_MESSAGE, "User not found.");
+    		return new ResponseEntity<>(null, headers, HttpStatus.NOT_FOUND);
+    	}
+    	
+    	UserDTO authenticatedUserDTO = new UserDTO();
+    	authenticatedUserDTO = userService.mapDTOFromEntity(validatedUser, authenticatedUserDTO);
+    	
+    	HttpHeaders headers = HeadersHelper.add(Headers.SUCCESS_MESSAGE, "User login success.");
 
+        return new ResponseEntity<>(authenticatedUserDTO, headers, HttpStatus.OK);
+    }
 }

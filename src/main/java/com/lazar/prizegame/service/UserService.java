@@ -31,4 +31,6 @@ public interface UserService {
     UserDTO findDtoById(int id);
 
     User updateDTO(UserDTO dto);
+    
+    User validateUser(String email, String password);
 }

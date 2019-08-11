@@ -1,6 +1,7 @@
 package com.serverless.dal;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +15,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
@@ -87,6 +87,7 @@ public class User {
 	}
 
 	@DynamoDBAttribute(attributeName = "email")
+	@DynamoDBIndexHashKey(attributeName = "email", globalSecondaryIndexName = "email-index")
 	public String getEmail() {
 		return email;
 	}
@@ -194,6 +195,28 @@ public class User {
 			return false;
 		}
 		return true;
+	}
+	
+	public User validateUserWithEmail(String email, String password) throws NoSuchAlgorithmException {
+		
+		User user = getUserByEmail(email);
+
+		if(user != null) {
+			
+			// TODO: Password encryption
+			String ecriptedPassword = password;
+			
+			if(ecriptedPassword.equals(user.getPassword())) {
+				logger.info("Users - validateUserWithEmail(): Password matches, for user with email: " + email);
+				return user;
+			
+			} else {
+				logger.info("Users - validateUserWithEmail(): Password doesn't match, for user with email: " + email);
+			}
+			
+		}
+		
+		return null;
 	}
 
 }

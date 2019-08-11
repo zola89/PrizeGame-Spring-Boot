@@ -142,4 +142,19 @@ public class UserServiceImpl implements UserService {
     protected Class<UserDTO> getEntityDTOClass() {
         return UtilsReflection.getParameterClazzOfType(this.getClass().getGenericSuperclass(), 1);
     }
+
+	@Override
+	public User validateUser(String email, String password) {
+		
+		User user = userRepository.findByEmail(email);
+		
+		// TODO: Encrypted password
+		if(user != null && password.equals(user.getPassword())) {
+			
+			return user;
+		}
+		
+		
+		return null;
+	}
 }

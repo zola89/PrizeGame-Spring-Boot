@@ -116,6 +116,12 @@ functions:
       - http:
           path: /users/{id}
           method: put
+  validateUser:
+    handler: com.serverless.user.ValidateUserHandler
+    events:
+      - http:
+          path: /users/validate
+          method: post
   listCodes:
     handler: com.serverless.code.ListCodesHandler
     events:
