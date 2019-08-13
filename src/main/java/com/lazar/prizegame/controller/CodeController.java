@@ -77,5 +77,10 @@ public class CodeController {
     public List<Code> getCodeByUserId(@PathVariable int user_id) {
         return codeService.findByUserId(user_id);
     }
+    
+    @PostMapping(value = "/prize")
+    public CodeDTO insertUserPrizeCode(@RequestParam( required = true ) String prize_code, @RequestParam( required = true ) int user_id) {
+    	return codeService.insertUserPrizeCode(prize_code, user_id);
+    }
 
 }

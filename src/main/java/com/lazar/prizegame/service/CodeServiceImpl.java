@@ -2,12 +2,14 @@ package com.lazar.prizegame.service;
 
 import com.lazar.prizegame.dto.CodeDTO;
 import com.lazar.prizegame.model.Code;
+import com.lazar.prizegame.model.User;
 import com.lazar.prizegame.model.enums.PrizeType;
 import com.lazar.prizegame.repository.CodeRepository;
 import com.lazar.prizegame.utils.reflection.UtilsReflection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +113,47 @@ public class CodeServiceImpl implements CodeService {
     public Code getByPrizeCode(String prizeCode) {
         return codeRepository.findByPrizeCode(prizeCode);
     }
+    
+    @Override
+	public CodeDTO insertUserPrizeCode(String prizeCode, int userId) {
+		
+    	try {
+    		// get Code by prize code
+	    	Code existingCode = getByPrizeCode(prizeCode);
+	    	User luckyUser = userService.findOne(userId);
+	    	
+	    	if(luckyUser == null)
+	    		throw new RuntimeException("User not found.");
+	    	
+	    	if(existingCode != null) {
+	    		
+	    		if(existingCode.getUser() == null && existingCode.getPrizeTime() == null) {
+	    			
+	    			// Update code with user id and prize time
+	    			existingCode.setUser(luckyUser);
+	    			existingCode.setPrizeTime(new Timestamp(System.currentTimeMillis()));
+	    			
+	    			Code updatedCode = codeRepository.save(existingCode);
+	    			CodeDTO returnCode = new CodeDTO();
+	    			mapDTOFromEntity(updatedCode, returnCode);
+	    			
+	    			return returnCode;
+	    		}
+	    		else {
+	    			
+	    			throw new RuntimeException("Code with prize_code: '" + prizeCode + "' already taken.");
+	    		}
+	    	}
+	    	else {
+	    		
+	    		throw new RuntimeException("Prize code not found.");
+	    	}
+    	}
+    	catch (Exception ex) {
+    		
+    		throw new RuntimeException("Error while inserting prize: " + ex.getMessage(), ex);
+    	}
+	}
 
     protected Code createNewInstanceOfEntityClass() {
 

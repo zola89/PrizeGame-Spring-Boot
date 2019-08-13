@@ -30,4 +30,6 @@ public interface CodeService {
     Code getByPrizeCode(String prizeCode);
 
     Code updateDTO(CodeDTO dto);
+    
+    CodeDTO insertUserPrizeCode(String prizeCode, int userId);
 }

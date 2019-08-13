@@ -3,8 +3,8 @@
 /* ----------------------------------------------- */
 
 .cover {
-    background-image: -webkit-linear-gradient(rgba(233,144,65, 0.7), rgba(63,81,181, 0.3)), url(../../../resources/prizes.jpg);
-    background-image: linear-gradient(rgba(233,144,65, 0.7), rgba(63,81,181, 0.3)), url(../../../resources/prizes.jpg);
+    background-image: -webkit-linear-gradient(rgba(233,144,65, 0.7), rgba(63,81,181, 0.3)), url(/resources/prizes.jpg);
+    background-image: linear-gradient(rgba(233,144,65, 0.7), rgba(63,81,181, 0.3)), url(/resources/prizes.jpg);
     background-size: cover;
     background-position: center;
     height: 85vh;
