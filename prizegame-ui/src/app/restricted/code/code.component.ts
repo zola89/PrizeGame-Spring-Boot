@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef, MatPaginator, MatTable, MatTableDataSource} from "@angular/material";
 import {ConfirmationDialogComponent} from "../dialog/confirmation-dialog.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Code} from "./code.model";
 import {CodeService} from "./code.service";
 
@@ -15,6 +15,7 @@ export class CodeComponent implements OnInit {
   dataSource = new MatTableDataSource<Code>();
   dialogRef: MatDialogRef<ConfirmationDialogComponent>;
   screenHeight: number;
+  id: number;
 
   @ViewChild('codeTable')
   codeTable: MatTable<Code>;
@@ -26,17 +27,33 @@ export class CodeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private router: Router, private codeService: CodeService, public dialog: MatDialog) {
+  constructor(private router: Router, protected route: ActivatedRoute, private codeService: CodeService, public dialog: MatDialog) {
     this.screenHeight = window.innerHeight;
   }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
-    this.codeService.getCodes().subscribe(
-        data => {
-          this.dataSource.data = data;
-        }
-    );
+    
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
+
+
+    if (this.id) {
+      this.codeService.getByUserId(this.id).subscribe(
+          data => {
+            console.log(data);
+            this.dataSource.data = data;
+          }
+      );
+    } else {
+    	this.codeService.getCodes().subscribe(
+        	data => {
+          		this.dataSource.data = data;
+        	}
+    	);
+    
+    }
   }
 
   addNew() {

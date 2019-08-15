@@ -38,5 +38,9 @@ export class CodeService {
   getByPrizeCode(prizeCode: any): Observable<Code> {
     return this.http.get<Code>(this.url + '/prize/' + prizeCode);
   }
+  
+  getByUserId(id: any): Observable<Code> {
+    return this.http.get<Code>(this.url + '/user/' + id);
+  }
 
 }

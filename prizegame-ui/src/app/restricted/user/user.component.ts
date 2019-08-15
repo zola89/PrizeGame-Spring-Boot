@@ -85,7 +85,7 @@ export class UserComponent extends BaseComponent implements OnInit {
 
 
   openCodePage(index: number, id: any) {
-    this.router.navigateByUrl('code');
+    this.router.navigateByUrl('code/user/' + id);
   }
 
 }

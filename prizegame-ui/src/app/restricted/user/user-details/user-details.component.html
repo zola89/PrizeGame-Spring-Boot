@@ -16,7 +16,7 @@
     <div class="form">
       <mat-form-field color="primary">
         <mat-label>Email</mat-label>
-        <input matInput #input class="form-control" [(ngModel)]="user.email" name="mail" required>
+        <input matInput #input class="form-control" [(ngModel)]="user.email" name="email" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -24,7 +24,7 @@
     <div class="form">
       <mat-form-field color="primary">
         <mat-label>Phone</mat-label>
-        <input matInput #input class="form-control" [(ngModel)]="user.phone" name="mail">
+        <input matInput #input class="form-control" [(ngModel)]="user.phone" name="phone">
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
@@ -32,7 +32,7 @@
     <div class="form">
       <mat-form-field color="primary">
         <mat-label>Address</mat-label>
-        <input matInput #input class="form-control" [(ngModel)]="user.address" name="mail">
+        <input matInput #input class="form-control" [(ngModel)]="user.address" name="address">
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
