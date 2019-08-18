@@ -1,6 +1,7 @@
 package com.serverless.user;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -40,7 +41,13 @@ public class CreateUserHandler implements RequestHandler<Map<String, Object>, Ap
 
 			// send the response back
 			return ApiGatewayResponse.builder().setStatusCode(200).setObjectBody(user)
-					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless")).build();
+					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
 
 		} catch (Exception ex) {
 			logger.error("Error in saving user: " + ex);
@@ -48,7 +55,13 @@ public class CreateUserHandler implements RequestHandler<Map<String, Object>, Ap
 			// send the error response back
 			Response responseBody = new Response("Error in saving user: " + ex.getMessage(), input);
 			return ApiGatewayResponse.builder().setStatusCode(500).setObjectBody(responseBody)
-					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless")).build();
+					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
 		}
 	}
 }

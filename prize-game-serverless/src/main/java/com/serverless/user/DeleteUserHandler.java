@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.serverless.ApiGatewayResponse;
@@ -32,14 +33,24 @@ public class DeleteUserHandler implements RequestHandler<Map<String, Object>, Ap
         if (success) {
           return ApiGatewayResponse.builder()
       				.setStatusCode(204)
-      				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-      				.build();
+      				.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
         } else {
           return ApiGatewayResponse.builder()
       				.setStatusCode(404)
       				.setObjectBody("User with id: '" + userId + "' not found.")
-      				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-      				.build();
+      				.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
         }
     } catch (Exception ex) {
         logger.error("Error in deleting user: " + ex);
@@ -49,8 +60,13 @@ public class DeleteUserHandler implements RequestHandler<Map<String, Object>, Ap
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)
-  					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-  					.build();
+  					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
     }
 	}
 }

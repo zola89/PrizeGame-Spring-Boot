@@ -1,6 +1,7 @@
 package com.serverless.user;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -16,7 +17,7 @@ import com.serverless.dal.User;
 public class ValidateUserHandler implements RequestHandler<Map<String, Object>, ApiGatewayResponse> {
 
 	private final Logger logger = Logger.getLogger(this.getClass());
-	
+
 	@Override
 	public ApiGatewayResponse handleRequest(Map<String, Object> input, Context context) {
 
@@ -41,13 +42,16 @@ public class ValidateUserHandler implements RequestHandler<Map<String, Object>, 
 	        	
 	        	if(user != null) {
 	        		logger.debug("Validate User: user found.");
-
+	        		
 			        // send the error response back
-					return ApiGatewayResponse.builder()
-							.setStatusCode(200) // NOT_FOUND
-							.setObjectBody(user)
-							.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-							.build();
+					return ApiGatewayResponse.builder().setStatusCode(200) // NOT_FOUND
+							.setObjectBody(user).setHeaders(new HashMap<String, String>() {
+								{
+									put("X-Powered-By", "AWS Lambda & Serverless");
+									put("Access-Control-Allow-Origin", "*");
+									put("Access-Control-Allow-Credentials", "true");
+								}
+							}).build();
 	        		
 	        	} else {
 	        		logger.warn("Validate User: credentials wrong.");
@@ -57,8 +61,13 @@ public class ValidateUserHandler implements RequestHandler<Map<String, Object>, 
 					return ApiGatewayResponse.builder()
 							.setStatusCode(404) // NOT_FOUND
 							.setObjectBody(responseBody)
-							.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-							.build();
+							.setHeaders(new HashMap<String, String>() {
+								{
+									put("X-Powered-By", "AWS Lambda & Serverless");
+									put("Access-Control-Allow-Origin", "*");
+									put("Access-Control-Allow-Credentials", "true");
+								}
+							}).build();
 	        		
 	        	}
 	        	
@@ -72,8 +81,13 @@ public class ValidateUserHandler implements RequestHandler<Map<String, Object>, 
 				return ApiGatewayResponse.builder()
 						.setStatusCode(400) // BAD_REQUEST
 						.setObjectBody(responseBody)
-						.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-						.build();
+						.setHeaders(new HashMap<String, String>() {
+							{
+								put("X-Powered-By", "AWS Lambda & Serverless");
+								put("Access-Control-Allow-Origin", "*");
+								put("Access-Control-Allow-Credentials", "true");
+							}
+						}).build();
 	        }
 	        
 		} catch(Exception ex) {
@@ -84,11 +98,16 @@ public class ValidateUserHandler implements RequestHandler<Map<String, Object>, 
 			return ApiGatewayResponse.builder()
 					.setStatusCode(500)
 					.setObjectBody(responseBody)
-					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-					.build();
+					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
 		}
 	}
-	
+
 	private boolean isNotEmptyOrNull(String text) {
 		return text != null && !text.isEmpty();
 	}

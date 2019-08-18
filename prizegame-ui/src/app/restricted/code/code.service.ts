@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class CodeService {
 
-  private url = 'code';
+  private url = 'codes';
 
   constructor(private http: HttpClient) {
   }

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserStorage} from '../core/auth/user.storage';
 import {Subscription} from 'rxjs/Subscription';
@@ -40,15 +40,23 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
   }
 
   codes() {
-    this.router.navigateByUrl('code');
+    if (this.currentUser && this.currentUser.isAdmin()) {
+      this.router.navigateByUrl('code');
+    } else {
+      this.router.navigateByUrl('code/user' + this.currentUser.id);
+    }
   }
   
   users() {
-    this.router.navigateByUrl('user');
+    if (this.currentUser && this.currentUser.isAdmin()) {
+      this.router.navigateByUrl('user');
+    } else {
+      this.router.navigateByUrl('user/details/' + this.userStorage.getCurrentUserId());
+    }
+
   }
 
   editProfile() {
-
     this.router.navigateByUrl('user/details/' + this.userStorage.getCurrentUserId());
   }
 

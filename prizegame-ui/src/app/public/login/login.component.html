@@ -5,6 +5,13 @@
   <mat-card-content>
     <form class="login-form">
       <table class="login-full-width" cellspacing="0">
+        <tr *ngIf="signUp">
+          <td>
+            <mat-form-field class="login-full-width">
+              <input matInput placeholder="Name" [(ngModel)]="name" name="name" [required]="signUp">
+            </mat-form-field>
+          </td>
+        </tr>
         <tr>
           <td>
             <mat-form-field class="login-full-width">
@@ -23,6 +30,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="login()" color="primary">Login</button>
+    <button mat-raised-button (click)="login()" color="primary">Sign In</button>
+    <button mat-raised-button (click)="register()" color="secondary">Sign Up</button>
   </mat-card-actions>
 </mat-card>

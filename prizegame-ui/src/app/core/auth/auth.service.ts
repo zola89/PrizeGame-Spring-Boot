@@ -18,7 +18,7 @@ export class AuthService {
     const user = new User();
     user.email = email;
     user.password = password;
-    return this.http.post<any>('user/validate', user);
+    return this.http.post<any>('users/validate', user);
   }
 
   public isAuthenticated(): boolean {

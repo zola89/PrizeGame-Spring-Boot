@@ -29,8 +29,8 @@ provider:
     CODE_TABLE_NAME: ${self:custom.codeTableName}
  
 # you can overwrite defaults here
-  stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'prod'}
+  region: ${opt:region, 'eu-central-1'}
 
   iamRoleStatements:
     - Effect: Allow
@@ -86,90 +86,105 @@ functions:
       - http:
           path: /users
           method: get
+          cors: true
   getUser:
     handler: com.serverless.user.GetUserHandler
     events:
       - http:
           path: /users/{id}
           method: get
+          cors: true
   getUserByEmail:
     handler: com.serverless.user.GetUserByEmailHandler
     events:
       - http:
           path: /users/email/{email}
           method: get
+          cors: true
   createUser:
     handler: com.serverless.user.CreateUserHandler
     events:
       - http:
           path: /users
           method: post
+          cors: true
   deleteUser:
     handler: com.serverless.user.DeleteUserHandler
     events:
       - http:
           path: /users/{id}
           method: delete
+          cors: true
   updateUser:
     handler: com.serverless.user.UpdateUserHandler
     events:
       - http:
           path: /users/{id}
           method: put
+          cors: true
   validateUser:
     handler: com.serverless.user.ValidateUserHandler
     events:
       - http:
           path: /users/validate
           method: post
+          cors: true
   listCodes:
     handler: com.serverless.code.ListCodesHandler
     events:
       - http:
           path: /codes
           method: get
+          cors: true
   getCode:
     handler: com.serverless.code.GetCodeHandler
     events:
       - http:
           path: /codes/{id}
           method: get
+          cors: true
   getCodesByUserId:
     handler: com.serverless.code.GetCodesByUserIdHandler
     events:
       - http:
           path: /codes/user/{user_id}
-          method: get 
+          method: get
+          cors: true
   getCodeByPrizeCode:
     handler: com.serverless.code.GetCodeByPrizeCodeHandler
     events:
       - http:
           path: /codes/prize/{prize_code}
-          method: get   
+          method: get  
+          cors: true 
   insertUserPrizeCode:
     handler: com.serverless.code.InsertUserPrizeCodeHandler
     events:
       - http:
           path: /codes/prize
           method: post
+          cors: true
   createCode:
     handler: com.serverless.code.CreateCodeHandler
     events:
       - http:
           path: /codes
           method: post
+          cors: true
   deleteCode:
     handler: com.serverless.code.DeleteCodeHandler
     events:
       - http:
           path: /codes/{id}
           method: delete
+          cors: true
   updateCode:
     handler: com.serverless.code.UpdateCodeHandler
     events:
       - http:
           path: /codes/{id}
           method: put
+          cors: true
 #  deleteUser:
 #    handler: com.serverless.DeleteUserHandler
 #    The following are a few example events you can configure
@@ -236,8 +251,8 @@ resources:
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
-            ReadCapacityUnits: '1'
-            WriteCapacityUnits: '1'                    
+            ReadCapacityUnits: '5'
+            WriteCapacityUnits: '5'                    
           
     CodeTable:
       Type: AWS::DynamoDB::Table
@@ -264,8 +279,8 @@ resources:
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
-            ReadCapacityUnits: '1'
-            WriteCapacityUnits: '1'          
+            ReadCapacityUnits: '5'
+            WriteCapacityUnits: '5'          
         - IndexName: user_id-index
           KeySchema:
           - AttributeName: user_id
@@ -273,8 +288,8 @@ resources:
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
-            ReadCapacityUnits: '1'
-            WriteCapacityUnits: '1'          
+            ReadCapacityUnits: '5'
+            WriteCapacityUnits: '5'          
           
          
      

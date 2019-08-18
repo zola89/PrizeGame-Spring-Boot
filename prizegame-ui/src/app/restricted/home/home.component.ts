@@ -17,8 +17,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   code = new Code();
   user = new User();
 
-
-
   formControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator

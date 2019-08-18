@@ -16,7 +16,7 @@ public class DynamoDBAdapter {
     private DynamoDBAdapter() {
         // create the client
         this.client = AmazonDynamoDBClientBuilder.standard()
-            .withRegion(Regions.US_EAST_1)
+            .withRegion(Regions.EU_CENTRAL_1)
             .build();
     }
 

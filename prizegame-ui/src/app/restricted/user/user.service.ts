@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
-  private url = 'user';  // URL to web api
+  private url = 'users';  // URL to web api
 
   constructor(private http: HttpClient) {
   }

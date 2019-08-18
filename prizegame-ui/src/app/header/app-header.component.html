@@ -2,27 +2,23 @@
 <header>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-
+      <span *ngIf="currentUser!== null && currentUser">
       <span title="Home page">
         <mat-icon aria-label="HomePage" (click)="openHomePage()" class="pointer">favorite</mat-icon>
       </span>
 
       <button mat-button (click)="codes()">Codes</button>
       <button mat-button (click)="users()">Users</button>
-
+      </span>
       <span class="uvs-fill-remaining-space"></span>
       <span class="spacer"></span>
 
+      <span *ngIf="currentUser !== null && currentUser">
         <span style="font-size: 14px">Logged in as {{currentUser?.name}}</span>
-        <button mat-button (click)="editProfile()" title="Profile" class="mat-icon-button">
-          <mat-icon aria-label="Edit">face</mat-icon>
-        </button>
-        <button mat-button (click)="quickGuide()" title="Help" class="mat-icon-button">
-          <mat-icon aria-label="Logout">help_outline</mat-icon>
-        </button>
          <button mat-button (click)="openConfirmationDialog()" title="Log out" class="mat-icon-button">
           <mat-icon aria-label="Logout">power_settings_new</mat-icon>
         </button>
+      </span>
 
     </mat-toolbar-row>
   </mat-toolbar>

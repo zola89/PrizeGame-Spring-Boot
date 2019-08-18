@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 
@@ -28,8 +29,13 @@ public class ListUsersHandler implements RequestHandler<Map<String, Object>, Api
         return ApiGatewayResponse.builder()
     				.setStatusCode(200)
     				.setObjectBody(users)
-    				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-    				.build();
+    				.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
     } catch (Exception ex) {
         logger.error("Error in listing users: " + ex);
 
@@ -38,8 +44,13 @@ public class ListUsersHandler implements RequestHandler<Map<String, Object>, Api
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)
-  					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-  					.build();
+  					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
     }
 	}
 }

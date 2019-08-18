@@ -1,6 +1,7 @@
 package com.serverless.code;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,14 +33,24 @@ public class GetCodesByUserIdHandler implements RequestHandler<Map<String, Objec
           return ApiGatewayResponse.builder()
       				.setStatusCode(200)
       				.setObjectBody(code)
-      				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-      				.build();
+      				.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
         } else {
           return ApiGatewayResponse.builder()
       				.setStatusCode(404)
               .setObjectBody("Code with user_id: '" + userId + "' not found.")
-      				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-      				.build();
+      				.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
         }
     } catch (Exception ex) {
         logger.error("Error in retrieving code: " + ex);
@@ -49,8 +60,13 @@ public class GetCodesByUserIdHandler implements RequestHandler<Map<String, Objec
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)
-  					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-  					.build();
+  					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
     }
 	}
 }
