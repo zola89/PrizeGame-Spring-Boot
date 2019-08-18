@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
-import {Code} from "./code.model";
+import {Code} from './code.model';
+
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -38,9 +39,9 @@ export class CodeService {
   getByPrizeCode(prizeCode: any): Observable<Code> {
     return this.http.get<Code>(this.url + '/prize/' + prizeCode);
   }
-  
-  getByUserId(id: any): Observable<Code> {
-    return this.http.get<Code>(this.url + '/user/' + id);
+
+  getByUserId(id: any): Observable<Code[]> {
+    return this.http.get<Code[]>(this.url + '/user/' + id);
   }
 
 }

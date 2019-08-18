@@ -1,9 +1,9 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef, MatPaginator, MatTable, MatTableDataSource} from "@angular/material";
-import {ConfirmationDialogComponent} from "../dialog/confirmation-dialog.component";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Code} from "./code.model";
-import {CodeService} from "./code.service";
+import {MatDialog, MatDialogRef, MatPaginator, MatTable, MatTableDataSource} from '@angular/material';
+import {ConfirmationDialogComponent} from '../dialog/confirmation-dialog.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Code} from './code.model';
+import {CodeService} from './code.service';
 
 @Component({
   selector: 'app-code',
@@ -42,7 +42,6 @@ export class CodeComponent implements OnInit {
     if (this.id) {
       this.codeService.getByUserId(this.id).subscribe(
           data => {
-            console.log(data);
             this.dataSource.data = data;
           }
       );

@@ -3,7 +3,9 @@ import {Code} from '../code/code.model';
 import {User} from '../user/user.model';
 import {Router} from '@angular/router';
 import {CodeService} from '../code/code.service';
-import {FormControl, ValidationErrors, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
+import {UserStorage} from '../../core/auth/user.storage';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'home',
@@ -22,10 +24,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     Validators.nullValidator
   ]);
 
-  constructor(private router: Router, private codeService: CodeService) {
+  constructor(private router: Router, private codeService: CodeService, private userStorage: UserStorage) {
   }
 
   ngOnInit() {
+    this.user = this.userStorage.getCurrentUser();
   }
 
   ngOnDestroy() {
@@ -38,7 +41,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
             if (data !== null) {
               this.code = data;
+              this.code.userId = this.user.id;
+
+              if (isNullOrUndefined(this.user.codes)) {
+                this.user.codes = [];
+              }
               this.user.codes.push(this.code);
+
+              this.codeService.update(this.code.id, this.code).subscribe(
+                  data1 => {
+                    this.code = data1;
+                  }
+              );
             } else {
               this.code.prizeCode = null;
               this.formControl.setErrors({nullValidator: true});
@@ -60,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   viewPrizes() {
-    this.router.navigateByUrl('code');
+    this.router.navigateByUrl('code/user/' + this.user.id);
   }
 
   addPrize() {

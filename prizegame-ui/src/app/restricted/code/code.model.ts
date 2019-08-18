@@ -6,5 +6,5 @@ export class Code {
   prizeCode: string;
   prizeType: string;
   prizeTime: Date;
-  user: User;
+  userId: number;
 }

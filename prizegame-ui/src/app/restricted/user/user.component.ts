@@ -4,7 +4,7 @@ import {User} from './user.model';
 import {Router} from '@angular/router';
 import {UserService} from './user.service';
 import {ConfirmationDialogComponent} from '../dialog/confirmation-dialog.component';
-import {TokenStorage} from '../../core/auth/token.storage';
+import {UserStorage} from '../../core/auth/user.storage';
 import {BaseComponent} from '../../core/base/base.component';
 
 @Component({
@@ -30,7 +30,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  constructor(private router: Router, private userService: UserService, public dialog: MatDialog, tokenStorage: TokenStorage) {
+  constructor(private router: Router, private userService: UserService, public dialog: MatDialog, tokenStorage: UserStorage) {
     super(tokenStorage);
     this.screenHeight = window.innerHeight;
   }

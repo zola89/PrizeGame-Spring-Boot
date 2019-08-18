@@ -1,0 +1,457 @@
+[
+	{
+		"name" : "svetlanab",
+		"password" : "laza2002",
+		"address" : "27. Marta 28",
+		"email" : "ceca.bogdanovic@gmail.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "dejan",
+		"password" : "db",
+		"address" : "27. Marta 28",
+		"email" : "db@gmail.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "NadaB",
+		"password" : "db",
+		"address" : "27. Marta 28",
+		"email" : "nadab@gmail.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "testUser",
+		"password" : "123124",
+		"address" : "27. Marta 28",
+		"email" : "test@gmail.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "NewLazar",
+		"password" : "laza2002",
+		"address" : "Bul. 32",
+		"email" : "newlazar@email.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Keely",
+		"password" : "MFH62VKX9DR",
+		"address" : "P.O. Box 363, 6241 Ipsum St.",
+		"email" : "a@nunc.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Mia",
+		"password" : "TGI21DEP7TJ",
+		"address" : "965-8146 Tellus Rd.",
+		"email" : "id.ante.Nunc@Utnec.ca",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Bernard",
+		"password" : "LMI26ZIP6GW",
+		"address" : "8157 Donec Avenue",
+		"email" : "ipsum.primis@Aenean.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Chiquita",
+		"password" : "OZK82LRC4KE",
+		"address" : "P.O. Box 400, 5162 Massa Street",
+		"email" : "ante.bibendum@hendreritconsectetuercursus.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Whitney",
+		"password" : "ICW89AZO7JB",
+		"address" : "457-7505 Aliquam St.",
+		"email" : "augue@Nunc.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Shea",
+		"password" : "IXN54VZZ3XA",
+		"address" : "476-6884 Ridiculus Rd.",
+		"email" : "egestas.lacinia.Sed@parturient.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Olivia",
+		"password" : "UNG27CQS9BT",
+		"address" : "P.O. Box 454, 8881 Tristique Rd.",
+		"email" : "felis.orci.adipiscing@In.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Zephania",
+		"password" : "EDU47FVY0RL",
+		"address" : "8233 Iaculis Rd.",
+		"email" : "aliquet.odio@urna.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Maggie",
+		"password" : "GAQ31XOL9WY",
+		"address" : "2312 Torquent Rd.",
+		"email" : "Mauris.nulla@est.ca",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Blair",
+		"password" : "ALC69ATR6AV",
+		"address" : "5500 Tellus. St.",
+		"email" : "interdum@utmi.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Beck",
+		"password" : "LLM23WET6XR",
+		"address" : "P.O. Box 638, 7656 Tristique St.",
+		"email" : "Quisque@malesuadavelvenenatis.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Cruz",
+		"password" : "RUG61FZD2QI",
+		"address" : "911-5468 A, Rd.",
+		"email" : "Nulla.eu@imperdiet.ca",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Lucius",
+		"password" : "BMK67DBW3ZW",
+		"address" : "3668 Id Rd.",
+		"email" : "et.magnis@egetmetus.ca",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Risa",
+		"password" : "WFU74GAN0IM",
+		"address" : "919-5976 Nec, Ave",
+		"email" : "facilisis.eget.ipsum@tempusscelerisque.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Murphy",
+		"password" : "WJC63YGW5HE",
+		"address" : "Ap #362-8518 Tellus Rd.",
+		"email" : "Duis.volutpat@Fuscealiquamenim.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Mohammad",
+		"password" : "BFE59LLN1MO",
+		"address" : "Ap #738-2946 Penatibus Rd.",
+		"email" : "a@sitamet.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Axel",
+		"password" : "OYY01YBW5NM",
+		"address" : "1282 Eu Av.",
+		"email" : "feugiat.tellus.lorem@Nam.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Petra",
+		"password" : "MBD64CEB4OO",
+		"address" : "892-2592 Egestas. Avenue",
+		"email" : "imperdiet@arcu.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Christopher",
+		"password" : "TGG17BZN8DR",
+		"address" : "Ap #350-4217 Nascetur Avenue",
+		"email" : "ut.ipsum@Morbisitamet.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Travis",
+		"password" : "HNE75IOT6MQ",
+		"address" : "P.O. Box 509, 3216 Magna. St.",
+		"email" : "Duis@maurissapien.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Urielle",
+		"password" : "YCB12TTZ5QA",
+		"address" : "414-3900 Sollicitudin Rd.",
+		"email" : "eget.nisi.dictum@bibendumfermentum.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Indigo",
+		"password" : "TKV27XJI3EG",
+		"address" : "Ap #703-1662 Luctus Av.",
+		"email" : "ac.mattis.ornare@nec.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Lunea",
+		"password" : "HQO24TPS1PS",
+		"address" : "925-7276 Eros. Ave",
+		"email" : "Cras.convallis@convallisantelectus.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Lila",
+		"password" : "CPU08RDZ5LU",
+		"address" : "P.O. Box 493, 4320 Erat, Av.",
+		"email" : "posuere.at.velit@fermentumrisusat.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Dane",
+		"password" : "IPR86AVX1ZE",
+		"address" : "Ap #780-6551 Nascetur Rd.",
+		"email" : "sit.amet@euismodmauris.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Sigourney",
+		"password" : "EVS75GPD8BT",
+		"address" : "309-9514 Sodales St.",
+		"email" : "eros.turpis@Donecat.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Stewart",
+		"password" : "QDE45QIR7LU",
+		"address" : "660-5117 Risus. Av.",
+		"email" : "sociosqu.ad.litora@mauris.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Melvin",
+		"password" : "XVL53CNR8CH",
+		"address" : "Ap #368-9704 Sed Road",
+		"email" : "natoque.penatibus@diamSed.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Vanna",
+		"password" : "DAM36TMB7OH",
+		"address" : "P.O. Box 915, 2916 Amet Ave",
+		"email" : "libero.Donec.consectetuer@Praesenteudui.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Abel",
+		"password" : "EUA35RGI1SL",
+		"address" : "Ap #656-9516 Mus. Ave",
+		"email" : "vitae.diam.Proin@lacus.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Zephr",
+		"password" : "HWC51BWA6MK",
+		"address" : "2637 Enim. Avenue",
+		"email" : "consectetuer@Namnullamagna.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Illana",
+		"password" : "JZH91DYT1TM",
+		"address" : "958-3201 In Avenue",
+		"email" : "at.lacus@nequetellus.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Emery",
+		"password" : "CEE90TDN6FO",
+		"address" : "Ap #111-275 Eros St.",
+		"email" : "risus.Morbi@mi.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Caesar",
+		"password" : "HEA06YIZ1VZ",
+		"address" : "Ap #150-818 Orci. St.",
+		"email" : "ipsum@elementum.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Aquila",
+		"password" : "HLH48GBA0VA",
+		"address" : "8425 Aliquam Ave",
+		"email" : "velit.dui.semper@vulputateullamcorper.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Tad",
+		"password" : "TZB87MNZ9IT",
+		"address" : "247-4073 Consectetuer Street",
+		"email" : "quam.elementum.at@non.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Barry",
+		"password" : "ODQ14JOA3NN",
+		"address" : "P.O. Box 835, 8875 Montes, St.",
+		"email" : "vitae@Aeneansed.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Hope",
+		"password" : "FKR03RMY0AX",
+		"address" : "2896 Sollicitudin St.",
+		"email" : "semper.pretium.neque@iaculis.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Cheyenne",
+		"password" : "UWI09FSX7JV",
+		"address" : "Ap #447-2856 Convallis Ave",
+		"email" : "Curabitur@pharetra.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Forrest",
+		"password" : "SMH87QZE1SV",
+		"address" : "Ap #144-3552 In Ave",
+		"email" : "mi@consectetuereuismod.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Boris",
+		"password" : "REV98FSS2OI",
+		"address" : "P.O. Box 531, 3432 Arcu St.",
+		"email" : "Vestibulum.ante@quismassaMauris.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Wayne",
+		"password" : "LMO20ZFV3NB",
+		"address" : "Ap #491-4021 Metus Avenue",
+		"email" : "eget.venenatis.a@amet.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Angelica",
+		"password" : "YBP80KCC9TT",
+		"address" : "877-9132 Fermentum St.",
+		"email" : "scelerisque.mollis@arcuNunc.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Montana",
+		"password" : "VHZ11KGO4ZB",
+		"address" : "674-6911 Aliquet Ave",
+		"email" : "ullamcorper@arcuNunc.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Gretchen",
+		"password" : "INR63PGM2EC",
+		"address" : "4514 Aliquam Street",
+		"email" : "Phasellus@temporerat.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Pandora",
+		"password" : "KHA01EVL3SG",
+		"address" : "362-9291 Fringilla Rd.",
+		"email" : "dolor.vitae@sedsapienNunc.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Roary",
+		"password" : "ZCD63FMG0GY",
+		"address" : "187-6949 Nisi Avenue",
+		"email" : "egestas@sodales.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Fuller",
+		"password" : "AYD76RJM5WF",
+		"address" : "P.O. Box 505, 9609 Nec Av.",
+		"email" : "ligula.tortor.dictum@etlacinia.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Willow",
+		"password" : "UOR03XOG3YP",
+		"address" : "P.O. Box 906, 4453 Vulputate, St.",
+		"email" : "Sed@etnetus.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Cain",
+		"password" : "IQI13UKC6ZI",
+		"address" : "5507 Vel St.",
+		"email" : "sem.eget.massa@vitae.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Honorato",
+		"password" : "GYB87FZL7KK",
+		"address" : "558-4296 Ultrices. Ave",
+		"email" : "eget.odio@enim.ca",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Zahir",
+		"password" : "HHO04TQM5GE",
+		"address" : "104-4611 Vulputate, Rd.",
+		"email" : "non@sitamet.ca",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Kalia",
+		"password" : "FHK09FAX6JG",
+		"address" : "7536 Elit. Street",
+		"email" : "lorem.vehicula@tellus.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Odessa",
+		"password" : "WHX75YMV9RZ",
+		"address" : "536-5209 Dictum Road",
+		"email" : "varius.ultrices@lectusquis.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Dacey",
+		"password" : "IAR27MHY4PR",
+		"address" : "5423 Ut St.",
+		"email" : "aliquam.iaculis.lacus@dolor.co.uk",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Erich",
+		"password" : "ATB42VKR6YE",
+		"address" : "Ap #794-6714 Natoque Av.",
+		"email" : "consectetuer.rhoncus.Nullam@ipsum.com",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Serena",
+		"password" : "ZBX21GMR9YI",
+		"address" : "742-729 Id, Rd.",
+		"email" : "felis.ullamcorper.viverra@ametrisusDonec.net",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Harriet",
+		"password" : "TGM85CDA6SN",
+		"address" : "407-2253 Proin Avenue",
+		"email" : "vel@nuncIn.edu",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Cally",
+		"password" : "VRP93GYP6OV",
+		"address" : "8541 Ut St.",
+		"email" : "arcu@eudui.org",
+		"user_role" : "USER"
+	},
+	{
+		"name" : "Xaviera",
+		"password" : "IMW58AJC0ZU",
+		"address" : "2847 Dolor Ave",
+		"email" : "arcu.Vestibulum@nec.co.uk",
+		"user_role" : "USER"
+	}
+]

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TokenStorage} from '../core/auth/token.storage';
+import {UserStorage} from '../core/auth/user.storage';
 import {Subscription} from 'rxjs/Subscription';
 import {AppHeaderMessengerService} from './app-header-messager.service';
 import {ConfirmationDialogComponent} from '../restricted/dialog/confirmation-dialog.component';
@@ -18,8 +18,8 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
 
   private messageSubscription: Subscription;
 
-  constructor(private router: Router, public token: TokenStorage, private appHeaderMessengerService: AppHeaderMessengerService, public dialog: MatDialog) {
-    super(token);
+  constructor(private router: Router, public userStorage: UserStorage, private appHeaderMessengerService: AppHeaderMessengerService, public dialog: MatDialog) {
+    super(userStorage);
     this.refreshCurrentUser();
   }
 
@@ -35,7 +35,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
 
   logOut() {
     this.currentUser = null;
-    this.token.signOut();
+    this.userStorage.signOut();
     this.router.navigateByUrl('/');
   }
 
@@ -48,11 +48,12 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
   }
 
   editProfile() {
-    this.router.navigateByUrl('user/details/' + this.token.getUserId());
+
+    this.router.navigateByUrl('user/details/' + this.userStorage.getCurrentUserId());
   }
 
   refreshCurrentUser() {
-    this.currentUser = this.token.getCurrentUser();
+    this.currentUser = this.userStorage.getCurrentUser();
   }
 
   quickGuide() {

@@ -7,17 +7,19 @@ import {HomeComponent} from './restricted/home/home.component';
 import {LoginComponent} from './public/login/login.component';
 import {UnauthorizedComponent} from './public/unauthorized/unauthorized.component';
 import {UserComponent} from './restricted/user/user.component';
+import {AuthGuardService} from './core/auth/auth-guard.service';
+import {AdminGuardService} from './core/auth/admin-guard.service';
 
 const routes: Routes = [
 
-  {path: 'user', component: UserComponent},
-  {path: 'user/details', component: UserDetailsComponent},
-  {path: 'user/details/:id', component: UserDetailsComponent},
-  {path: 'code', component: CodeComponent},
-  {path: 'code/user/:id', component: CodeComponent},
-  {path: 'code/details', component: CodeDetailsComponent},
-  {path: 'code/details/:id', component: CodeDetailsComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuardService]},
+  {path: 'user/details', component: UserDetailsComponent, canActivate: [AuthGuardService]},
+  {path: 'user/details/:id', component: UserDetailsComponent, canActivate: [AuthGuardService]},
+  {path: 'code', component: CodeComponent, canActivate: [AuthGuardService]},
+  {path: 'code/user/:id', component: CodeComponent, canActivate: [AuthGuardService]},
+  {path: 'code/details', component: CodeDetailsComponent, canActivate: [AuthGuardService]},
+  {path: 'code/details/:id', component: CodeDetailsComponent, canActivate: [AuthGuardService]},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService ]},
   {path: 'login', component: LoginComponent},
   {path: 'unauthorized', component: UnauthorizedComponent},
   {path: '', component: LoginComponent}

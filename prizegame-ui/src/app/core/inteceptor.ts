@@ -13,7 +13,7 @@ import {
 import {Router} from '@angular/router';
 import 'rxjs/add/operator/do';
 import {Observable} from 'rxjs';
-import {TokenStorage} from './auth/token.storage';
+import {UserStorage} from './auth/user.storage';
 import {environment} from '../../environments/environment';
 import {AlertService} from './alert/alert-service';
 
@@ -22,7 +22,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
-  constructor(private token: TokenStorage, private router: Router, public alertService: AlertService) {
+  constructor(private userStorage: UserStorage, public alertService: AlertService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
@@ -33,10 +33,10 @@ export class Interceptor implements HttpInterceptor {
 
     let authReq = req;
 
-    if (this.token.getToken() != null) {
+    if (this.userStorage.getCurrentUser() != null) {
       authReq = req.clone({
         url: environment.baseUrl + req.url,
-        headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.token.getToken())
+        headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ')
       });
     } else {
       authReq = req.clone({

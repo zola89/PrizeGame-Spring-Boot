@@ -12,7 +12,7 @@ import {ErrorDialogComponent} from "./core/shared-components/error-dialog.compon
 import {ConfirmationDialogComponent} from "./restricted/dialog/confirmation-dialog.component";
 import {UserDetailsComponent} from "./restricted/user/user-details/user-details.component";
 import {AuthGuardService} from "./core/auth/auth-guard.service";
-import {TokenStorage} from "./core/auth/token.storage";
+import {UserStorage} from "./core/auth/user.storage";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BaseComponent} from "./core/base/base.component";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
@@ -20,7 +20,6 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatIconModule} from "@angular/material";
 import {AdminGuardService} from "./core/auth/admin-guard.service";
 import {LoginComponent} from "./public/login/login.component";
 import {UnauthorizedComponent} from "./public/unauthorized/unauthorized.component";
-import {AnalystGuardService} from "./core/auth/analyst-guard.service";
 import {SpinnerComponent} from "./core/shared-components/spinner/spinner.component";
 import {AuthService} from "./core/auth/auth.service";
 import {AlertService} from "./core/alert/alert-service";
@@ -65,7 +64,7 @@ import {CodeService} from "./restricted/code/code.service";
     Ng4LoadingSpinnerModule.forRoot()
   ],
   entryComponents: [ErrorDialogComponent, ConfirmationDialogComponent, SpinnerComponent, AutocompleteComponent, UnauthorizedComponent],
-  providers: [ErrorDialogComponent, UserService, CodeService, AuthService, TokenStorage, TokenStorage, AuthGuardService, AdminGuardService, AnalystGuardService, AppHeaderMessengerService, AlertService, SnackBarService,
+  providers: [ErrorDialogComponent, UserService, CodeService, AuthService, UserStorage, UserStorage, AuthGuardService, AdminGuardService, AppHeaderMessengerService, AlertService, SnackBarService,
 
     {
       provide: HTTP_INTERCEPTORS,

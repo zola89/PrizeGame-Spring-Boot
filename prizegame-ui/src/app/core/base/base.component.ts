@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../restricted/user/user.model';
-import {TokenStorage} from '../auth/token.storage';
+import {UserStorage} from '../auth/user.storage';
 
 @Component({
   selector: 'app-base',
@@ -11,7 +11,7 @@ export class BaseComponent implements OnInit {
 
   currentUser: User;
 
-  constructor(protected tokenStorage: TokenStorage) {
+  constructor(protected tokenStorage: UserStorage) {
     this.fetchCurrentUser();
   }
 

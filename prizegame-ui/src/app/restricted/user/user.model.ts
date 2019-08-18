@@ -13,12 +13,7 @@ export class User {
   codes?: Code[];
 
   public isAdmin(): boolean {
-    let allowedRoles = ['ADMIN'];
-    return this.checkRole(allowedRoles);
-  }
-
-  public isAnalyst(): boolean {
-    let allowedRoles = ['ADMIN', 'ANALYST'];
+    const allowedRoles = ['ADMIN'];
     return this.checkRole(allowedRoles);
   }
 
