@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   code = new Code();
   user = new User();
+  won = false;
 
   formControl = new FormControl('', [
     Validators.required,
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getPrize() {
     if (this.code.prizeCode) {
+
       this.codeService.getByPrizeCode(this.code.prizeCode).subscribe(
           data => {
 
@@ -48,9 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
               this.codeService.update(this.code.id, this.code).subscribe(
                   data1 => {
-                    this.code = data1;
+                    this.won = true;
                   }
               );
+
             } else {
               this.code.prizeCode = null;
               this.formControl.setErrors({nullValidator: true});
@@ -76,6 +79,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   addPrize() {
+    this.won = false;
     this.code = new Code();
     this.router.navigateByUrl('home');
   }

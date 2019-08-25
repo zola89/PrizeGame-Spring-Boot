@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {UserStorage} from '../core/auth/user.storage';
 import {Subscription} from 'rxjs/Subscription';
@@ -6,6 +6,7 @@ import {AppHeaderMessengerService} from './app-header-messager.service';
 import {ConfirmationDialogComponent} from '../restricted/dialog/confirmation-dialog.component';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {BaseComponent} from '../core/base/base.component';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-header',
@@ -40,15 +41,15 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
   }
 
   codes() {
-    if (this.currentUser && this.currentUser.isAdmin()) {
+    if (!isNullOrUndefined(this.currentUser) && this.currentUser.userRole === 'ADMIN') {
       this.router.navigateByUrl('code');
     } else {
-      this.router.navigateByUrl('code/user' + this.currentUser.id);
+      this.router.navigateByUrl('code/user/' + this.currentUser.id);
     }
   }
   
   users() {
-    if (this.currentUser && this.currentUser.isAdmin()) {
+    if (!isNullOrUndefined(this.currentUser) && this.currentUser.userRole === 'ADMIN') {
       this.router.navigateByUrl('user');
     } else {
       this.router.navigateByUrl('user/details/' + this.userStorage.getCurrentUserId());

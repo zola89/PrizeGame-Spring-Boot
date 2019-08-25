@@ -11,7 +11,7 @@ import {UserService} from '../user.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  id: number;
+  id: any;
   user: User = new User();
   check = false;
   roles = ['ADMIN', 'USER'];
@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = params['id'];
     });
 
     if (this.id) {

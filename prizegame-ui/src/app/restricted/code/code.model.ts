@@ -2,9 +2,9 @@ import {User} from '../user/user.model';
 
 export class Code {
 
-  id: number;
+  id: any;
   prizeCode: string;
   prizeType: string;
   prizeTime: Date;
-  userId: number;
+  userId: any;
 }

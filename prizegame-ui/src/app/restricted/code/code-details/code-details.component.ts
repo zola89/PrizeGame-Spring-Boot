@@ -12,7 +12,7 @@ import {CodeService} from '../code.service';
 })
 export class CodeDetailsComponent implements OnInit {
 
-  id: number;
+  id: any;
   code: Code = new Code();
   prizeTypes = ['CASH', 'GIFT_CARD', 'HOLIDAY', 'MOBILE_PHONE', 'SHIRT'];
 

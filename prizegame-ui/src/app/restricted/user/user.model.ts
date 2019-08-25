@@ -2,7 +2,7 @@ import {Code} from '../code/code.model';
 
 export class User {
 
-  id?: number;
+  id?: any;
   name?: string;
   password?: string;
   phone?: string;

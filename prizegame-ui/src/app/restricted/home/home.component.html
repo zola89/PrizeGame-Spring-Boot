@@ -1,7 +1,7 @@
 <div class="cover inner-padding">
     <form class="mat-dialog-content" #formControl="ngForm">
         <div class="central-text-box">
-            <div *ngIf="!code.prizeType">
+            <div *ngIf="!won">
                 <h1 class="child-text-box">Enter the Prize Code:</h1>
                 <div class="child-text-box">
                     <div class="form">
@@ -16,7 +16,7 @@
                     <button class="btn-full mat-button mat-button-primary" (click)="getPrize()">SUBMIT</button>
                 </div>
             </div>
-            <div *ngIf="code.prizeType">
+            <div *ngIf="won">
                 <h1 class="child-text-box">Prize you got is: {{code.prizeType}}</h1>
                 <div class="child-text-box">
                     <button class="btn-full mat-button mat-button-primary" (click)="viewPrizes()">View Prizes</button>

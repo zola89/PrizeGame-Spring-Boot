@@ -15,7 +15,7 @@ export class CodeComponent implements OnInit {
   dataSource = new MatTableDataSource<Code>();
   dialogRef: MatDialogRef<ConfirmationDialogComponent>;
   screenHeight: number;
-  id: number;
+  id: any;
 
   @ViewChild('codeTable')
   codeTable: MatTable<Code>;

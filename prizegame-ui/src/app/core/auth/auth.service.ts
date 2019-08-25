@@ -23,7 +23,6 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const user = this.userStorage.getCurrentUser();
-    console.log(user);
     return  !isNullOrUndefined(user);
   }
 

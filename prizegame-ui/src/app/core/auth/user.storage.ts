@@ -37,7 +37,7 @@ export class UserStorage {
     return user ? user.name : null;
   }
 
-  public getCurrentUserId(): number {
+  public getCurrentUserId(): any {
     const user = this.getCurrentUser();
     return user ? user.id : null;
   }
