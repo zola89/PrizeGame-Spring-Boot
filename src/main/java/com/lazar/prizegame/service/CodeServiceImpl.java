@@ -1,17 +1,21 @@
 package com.lazar.prizegame.service;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.lazar.prizegame.dto.CodeDTO;
 import com.lazar.prizegame.model.Code;
 import com.lazar.prizegame.model.User;
 import com.lazar.prizegame.model.enums.PrizeType;
 import com.lazar.prizegame.repository.CodeRepository;
 import com.lazar.prizegame.utils.reflection.UtilsReflection;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class CodeServiceImpl implements CodeService {
@@ -115,9 +119,11 @@ public class CodeServiceImpl implements CodeService {
     }
     
     @Override
+    @Transactional( isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW )
 	public CodeDTO insertUserPrizeCode(String prizeCode, int userId) {
 		
     	try {
+    		
     		// get Code by prize code
 	    	Code existingCode = getByPrizeCode(prizeCode);
 	    	User luckyUser = userService.findOne(userId);
