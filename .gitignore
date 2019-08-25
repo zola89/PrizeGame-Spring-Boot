@@ -1,5 +1,7 @@
 target/
+jmeter-load-tests/
 !.mvn/wrapper/maven-wrapper.jar
+*.log
 
 ### STS ###
 .apt_generated

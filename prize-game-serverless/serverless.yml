@@ -24,6 +24,7 @@ custom:
 provider:
   name: aws
   runtime: java8
+  memorySize: 2048
   environment:
     USER_TABLE_NAME: ${self:custom.userTableName}
     CODE_TABLE_NAME: ${self:custom.codeTableName}
