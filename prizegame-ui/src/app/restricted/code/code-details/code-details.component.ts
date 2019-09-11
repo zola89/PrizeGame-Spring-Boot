@@ -14,7 +14,7 @@ export class CodeDetailsComponent implements OnInit {
 
   id: any;
   code: Code = new Code();
-  prizeTypes = ['CASH', 'GIFT_CARD', 'HOLIDAY', 'MOBILE_PHONE', 'SHIRT'];
+  prize_types = ['CASH', 'GIFT_CARD', 'HOLIDAY', 'MOBILE_PHONE', 'SHIRT'];
 
   formControl = new FormControl('', [
     Validators.required
@@ -26,7 +26,7 @@ export class CodeDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = params['id'];
     });
 
 
@@ -63,7 +63,7 @@ export class CodeDetailsComponent implements OnInit {
 
   public onSave(): void {
 
-    this.code.prizeTime = new Date();
+    this.code.prize_time = new Date();
 
     this.codeService.save(this.code).subscribe(
         data => {

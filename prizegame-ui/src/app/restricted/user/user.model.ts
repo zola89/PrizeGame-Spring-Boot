@@ -8,8 +8,8 @@ export class User {
   phone?: string;
   email?: string;
   address?: string;
-  userRole?: string;
-  confirmPassword?: string;
+  user_role?: string;
+  confirm_password?: string;
   codes?: Code[];
 
   public isAdmin(): boolean {
@@ -19,7 +19,7 @@ export class User {
 
   public checkRole(allowedRoles: string[]): boolean {
 
-    if (allowedRoles.includes(this.userRole)) {
+    if (allowedRoles.includes(this.user_role)) {
       return true;
     }
 

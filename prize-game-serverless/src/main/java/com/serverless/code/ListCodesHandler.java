@@ -1,6 +1,7 @@
 package com.serverless.code;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,13 @@ public class ListCodesHandler implements RequestHandler<Map<String, Object>, Api
         return ApiGatewayResponse.builder()
     				.setStatusCode(200)
     				.setObjectBody(codes)
-    				.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-    				.build();
+    				.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
     } catch (Exception ex) {
         logger.error("Error in listing codes: " + ex);
 
@@ -36,8 +42,13 @@ public class ListCodesHandler implements RequestHandler<Map<String, Object>, Api
   			return ApiGatewayResponse.builder()
   					.setStatusCode(500)
   					.setObjectBody(responseBody)
-  					.setHeaders(Collections.singletonMap("X-Powered-By", "AWS Lambda & Serverless"))
-  					.build();
+  					.setHeaders(new HashMap<String, String>() {
+						{
+							put("X-Powered-By", "AWS Lambda & Serverless");
+							put("Access-Control-Allow-Origin", "*");
+							put("Access-Control-Allow-Credentials", "true");
+						}
+					}).build();
     }
 	}
 }

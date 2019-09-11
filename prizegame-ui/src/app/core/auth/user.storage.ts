@@ -2,14 +2,12 @@ import {Injectable} from '@angular/core';
 import {User} from '../../restricted/user/user.model';
 import {isNullOrUndefined} from 'util';
 
-
 export const currentUser = 'currentUser';
 
 @Injectable()
 export class UserStorage {
 
   constructor() {
-
   }
 
   signOut() {
@@ -24,11 +22,11 @@ export class UserStorage {
 
   public getCurrentUser(): User {
 
-    if (isNullOrUndefined(sessionStorage.getItem(currentUser))) {
+    if (isNullOrUndefined(window.sessionStorage.getItem(currentUser))) {
       return null;
     }
 
-    const user = JSON.parse(sessionStorage.getItem(currentUser));
+    const user = JSON.parse(window.sessionStorage.getItem(currentUser));
     return user;
   }
 

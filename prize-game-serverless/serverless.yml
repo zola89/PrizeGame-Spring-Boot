@@ -79,8 +79,6 @@ package:
   artifact: 'target/${self:service}-${self:provider.stage}.jar'
 
 functions:
-#  listUsers:
-#    handler: com.serverless.ListUsersHandler
   listUsers:
     handler: com.serverless.user.ListUsersHandler
     events:

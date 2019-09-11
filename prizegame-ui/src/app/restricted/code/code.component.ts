@@ -35,11 +35,13 @@ export class CodeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     
     this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = params['id'];
+      
     });
 
 
     if (this.id) {
+
       this.codeService.getByUserId(this.id).subscribe(
           data => {
             this.dataSource.data = data;

@@ -40,7 +40,7 @@
     <div class="form">
       <mat-form-field color="primary">
         <mat-label>Role</mat-label>
-        <mat-select [(ngModel)]="user.userRole" name="role">
+        <mat-select [(ngModel)]="user.user_role" name="role">
           <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
         </mat-select>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>

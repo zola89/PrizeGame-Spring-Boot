@@ -34,14 +34,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getPrize() {
-    if (this.code.prizeCode) {
+    if (this.code.prize_code) {
 
-      this.codeService.getByPrizeCode(this.code.prizeCode).subscribe(
+      this.codeService.getByPrizeCode(this.code.prize_code).subscribe(
           data => {
 
             if (data !== null) {
               this.code = data;
-              this.code.userId = this.user.id;
+              this.code.user_id = this.user.id;
 
               if (isNullOrUndefined(this.user.codes)) {
                 this.user.codes = [];
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
               );
 
             } else {
-              this.code.prizeCode = null;
+              this.code.prize_code = null;
               this.formControl.setErrors({nullValidator: true});
               this.getErrorMessage();
             }

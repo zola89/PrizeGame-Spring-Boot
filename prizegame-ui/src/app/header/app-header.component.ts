@@ -7,21 +7,21 @@ import {ConfirmationDialogComponent} from '../restricted/dialog/confirmation-dia
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {BaseComponent} from '../core/base/base.component';
 import {isNullOrUndefined} from 'util';
+import { User } from '../restricted/user/user.model';
 
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html'
 })
-export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestroy {
+export class AppHeaderComponent implements OnInit, OnDestroy {
 
   dialogRef: MatDialogRef<ConfirmationDialogComponent>;
 
+  currentUser: User;
 
   private messageSubscription: Subscription;
 
   constructor(private router: Router, public userStorage: UserStorage, private appHeaderMessengerService: AppHeaderMessengerService, public dialog: MatDialog) {
-    super(userStorage);
-    this.refreshCurrentUser();
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
   }
 
   codes() {
-    if (!isNullOrUndefined(this.currentUser) && this.currentUser.userRole === 'ADMIN') {
+    if (!isNullOrUndefined(this.currentUser) && this.currentUser.user_role === 'ADMIN') {
       this.router.navigateByUrl('code');
     } else {
       this.router.navigateByUrl('code/user/' + this.currentUser.id);
@@ -49,7 +49,7 @@ export class AppHeaderComponent extends BaseComponent implements OnInit, OnDestr
   }
   
   users() {
-    if (!isNullOrUndefined(this.currentUser) && this.currentUser.userRole === 'ADMIN') {
+    if (!isNullOrUndefined(this.currentUser) && this.currentUser.user_role === 'ADMIN') {
       this.router.navigateByUrl('user');
     } else {
       this.router.navigateByUrl('user/details/' + this.userStorage.getCurrentUserId());

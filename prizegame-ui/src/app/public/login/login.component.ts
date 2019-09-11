@@ -5,6 +5,8 @@ import {AlertService} from '../../core/alert/alert-service';
 import {User} from '../../restricted/user/user.model';
 import {isNullOrUndefined} from 'util';
 import {UserService} from '../../restricted/user/user.service';
+import { AppHeaderMessengerService } from 'src/app/header/app-header-messager.service';
+import { UserStorage } from 'src/app/core/auth/user.storage';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,10 @@ export class LoginComponent {
   constructor(private router: Router,
               private authService: AuthService,
               private alertService: AlertService,
-              private userService: UserService) {
+              private userService: UserService,
+              public userStorage: UserStorage, 
+              private appHeaderMessengerService: AppHeaderMessengerService) {
+
   }
 
   login(): void {
@@ -36,9 +41,17 @@ export class LoginComponent {
       data => {
         this.user = data;
         this.signUp = false;
-        if (!isNullOrUndefined(this.user)) {
-          sessionStorage.setItem('currentUser', JSON.stringify(this.user));
-          this.router.navigateByUrl('home');
+        
+        if (!isNullOrUndefined(this.user)) { 
+          this.appHeaderMessengerService.refresh(true);
+          this.userStorage.saveCurrentUser(JSON.stringify(this.user));
+  
+          if(this.user.user_role === "ADMIN") {
+            this.router.navigateByUrl('user');
+          } else {
+            this.router.navigateByUrl('home');
+          }
+          
         }
 
       },
@@ -63,6 +76,7 @@ export class LoginComponent {
     this.userService.save(user).subscribe(
         data => {
           this.signUp = false;
+          this.appHeaderMessengerService.refresh(true);
           this.router.navigateByUrl('home');
         }
     );

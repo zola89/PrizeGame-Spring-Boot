@@ -2,18 +2,18 @@
 
   <mat-table #codeTable [dataSource]="dataSource">
 
-    <ng-container matColumnDef="prizeCode">
+    <ng-container matColumnDef="prize_code">
       <mat-header-cell *matHeaderCellDef>Prize Code</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.prizeCode}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.prize_code}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="prizeType">
+    <ng-container matColumnDef="prize_type">
       <mat-header-cell *matHeaderCellDef>Prize Type</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.prizeType}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.prize_type}}</mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="['prizeCode', 'prizeType' , 'actions']"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: ['prizeCode', 'prizeType' , 'actions'];" (click)="edit(row.id)"></mat-row>
+    <mat-header-row *matHeaderRowDef="['prize_code', 'prize_type' , 'actions']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['prize_code', 'prize_type' , 'actions'];" (click)="edit(row.id)"></mat-row>
 
     <!-- actions -->
     <ng-container matColumnDef="actions">

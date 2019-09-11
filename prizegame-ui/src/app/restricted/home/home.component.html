@@ -6,7 +6,7 @@
                 <div class="child-text-box">
                     <div class="form">
                         <mat-form-field>
-                            <input matInput #input class="form-control" [(ngModel)]="code.prizeCode" name="prizeCode"
+                            <input matInput #input class="form-control" [(ngModel)]="code.prize_code" name="prize_code"
                                    required nullValidator>
                             <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                         </mat-form-field>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div *ngIf="won">
-                <h1 class="child-text-box">Prize you got is: {{code.prizeType}}</h1>
+                <h1 class="child-text-box">Prize you got is: {{code.prize_type}}</h1>
                 <div class="child-text-box">
                     <button class="btn-full mat-button mat-button-primary" (click)="viewPrizes()">View Prizes</button>
                     <button class="btn-ghost mat-button mat-button-primary" (click)="addPrize()">Add Prize</button>
